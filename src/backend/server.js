@@ -15,7 +15,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.post("/chat", async (req, res) => {
   try {
     const { query } = req.body;
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro-vision-latest" });
 
     const result = await model.generateContent(query);
     const responseText = result.response.candidates[0].content.parts[0].text;
@@ -27,4 +27,18 @@ app.post("/chat", async (req, res) => {
   }
 });
 
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+
+// Apply security headers
+app.use(helmet());
+
+// Rate limit API to prevent spam
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 5, // Limit each IP to 5 requests per minute
+  message: "Too many requests. Try again later.",
+});
+
+app.use("/chat", limiter);
 app.listen(5000, () => console.log("Backend server running on port 5000"));
