@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Chatbot = () => {
-    const [query, setQuery] = useState("");
   const [query, setQuery] = useState<string>("");
   const [response, setResponse] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
