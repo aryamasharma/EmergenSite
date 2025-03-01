@@ -1,8 +1,10 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const { GoogleGenerativeAI } = require("google-generativeai");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import * as dotenv from "dotenv";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -13,25 +15,9 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.post("/chat", async (req, res) => {
   try {
     const { query } = req.body;
-
-    const prompt = `
-      You are an AI safety assistant and historian analyzing user queries. 
-      If the user asks about historical disasters, provide:
-      - A summary of the event.
-      - How people responded at the time.
-      - How AI, blockchain, and modern tech could have helped.
-      - Lessons for modern disaster preparedness.
-
-      If the user asks about an emergency, provide:
-      - A real-time emergency response guide.
-      - Steps to follow immediately.
-      - Resources to contact.
-
-      User Query: ${query}
-    `;
-
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-    const result = await model.generateContent(prompt);
+
+    const result = await model.generateContent(query);
     const responseText = result.response.candidates[0].content.parts[0].text;
 
     res.json({ response: responseText });
