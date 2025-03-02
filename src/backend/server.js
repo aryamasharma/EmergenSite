@@ -3,108 +3,77 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import axios from "axios";
-import { Client } from "@googlemaps/google-maps-services-js";
+import axios from "axios"; // Required for geolocation verification
 
 dotenv.config();
 
-const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
-const weatherApiKey = process.env.WEATHER_API_KEY; // ✅ Weather API Key
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const googleMapsClient = new Client({});
+// ✅ Initialize Gemini AI
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// ✅ Store user alert history & AI conversation memory
+// 🏆 Store alert data & user submission history
 const users = {}; // { userId: { lastAlert: timestamp, alertType: "general"/"geolocation"/"security" } }
-const userConversations = {}; // { userId: { history: [previous messages] } }
 
-// ✅ Function to get nearest evacuation space
-async function getNearestEvacuation(location) {
+// 🚨 Security Alerts (Require 24-Hour Limit)
+const securityKeywords = ["domestic violence", "sexual assault", "kidnapping", "robbery", "murder", "accident", "violence"];
+const disasterKeywords = ["earthquake", "flood", "hurricane", "tornado"];
+
+// 🚨 Helpline Information
+const helplines = {
+  "domestic violence": "National Domestic Violence Hotline: 1-800-799-7233",
+  "sexual assault": "RAINN Sexual Assault Hotline: 1-800-656-4673",
+  "accident": "911 - Emergency Services",
+  "violence": "911 - Emergency Services",
+  "general": "For other emergencies, call 911.",
+};
+
+// 🌍 **Real-Time Disaster Verification**
+async function verifyDisaster(location, disasterType) {
   try {
-    const response = await googleMapsClient.placesNearby({
-      params: {
-        location: { lat: location.lat, lng: location.lon },
-        radius: 5000, // Search in a 5km radius
-        type: "shelter",
-        key: googleMapsApiKey,
-      },
-    });
+    const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${location.lat},${location.lon}`);
+    
+    const currentConditions = response.data.current.condition.text.toLowerCase();
 
-    if (!response.data.results.length) {
-      return "🚫 No nearby shelters found. Try checking official evacuation centers.";
+    if (
+      (disasterType === "earthquake" && currentConditions.includes("quake")) ||
+      (disasterType === "flood" && currentConditions.includes("flood")) ||
+      (disasterType === "hurricane" && currentConditions.includes("hurricane")) ||
+      (disasterType === "tornado" && currentConditions.includes("tornado"))
+    ) {
+      return true; // ✅ Disaster is occurring
     }
-
-    const nearestShelter = response.data.results[0];
-    return `🛑 The nearest evacuation space is **${nearestShelter.name}** at **${nearestShelter.vicinity}**. 
-    📍 Get directions: https://www.google.com/maps/dir/?api=1&destination=${nearestShelter.geometry.location.lat},${nearestShelter.geometry.location.lng}`;
+    
+    return false; // ❌ No official disaster
   } catch (error) {
-    console.error("Error fetching nearest evacuation space:", error);
-    return "🚫 Unable to fetch evacuation spaces at this time.";
-  }
-}
-
-// ✅ Function to fetch real-time weather data
-async function getWeather(location) {
-  try {
-    const response = await axios.get(
-      `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${location.lat},${location.lon}`
-    );
-    return `🌤️ Current weather: **${response.data.current.condition.text}**, Temperature: **${response.data.current.temp_c}°C**.`;
-  } catch (error) {
-    console.error("Error fetching weather:", error);
-    return "🚫 Unable to fetch weather data.";
+    console.error("Error checking disaster status:", error);
+    return false;
   }
 }
 
 // ✅ AI Chatbot API Route
 app.post("/chat", async (req, res) => {
   try {
-    const { userId, query, location } = req.body;
-    if (!query) return res.status(400).json({ response: "Query is required." });
-
-    if (!userConversations[userId]) {
-      userConversations[userId] = { history: [] };
+    const { query } = req.body;
+    if (!query) {
+      return res.status(400).json({ response: "Query is required." });
     }
 
-    let aiResponse = "";
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-    if (query.toLowerCase().includes("nearest evacuation space")) {
-      if (!location) {
-        aiResponse = "📍 Please provide your location for evacuation space details.";
-      } else {
-        aiResponse = await getNearestEvacuation(location);
-      }
-    } else if (query.toLowerCase().includes("weather") && location) {
-      aiResponse = await getWeather(location);
-    } else {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
-
-      const result = await model.generateContent({
-        contents: [
-          ...userConversations[userId].history,
-          { role: "user", parts: [{ text: query }] },
-        ],
-      });
-
-      if (!result?.response?.candidates) {
-        return res.status(500).json({ response: "AI response failed." });
-      }
-
-      aiResponse = result.response.candidates[0].content.parts[0].text;
-      userConversations[userId].history.push({ role: "user", parts: [{ text: query }] });
-      userConversations[userId].history.push({ role: "assistant", parts: [{ text: aiResponse }] });
-
-      if (userConversations[userId].history.length > 10) {
-        userConversations[userId].history = userConversations[userId].history.slice(-10);
-      }
+    const result = await model.generateContent({ contents: [{ role: "user", parts: [{ text: query }] }] });
+    
+    if (!result || !result.response || !result.response.candidates) {
+      return res.status(500).json({ response: "AI response failed." });
     }
 
-    res.json({ response: aiResponse });
+    const responseText = result.response.candidates[0].content.parts[0].text;
+
+    res.json({ response: responseText });
   } catch (error) {
-    console.error("AI Chatbot Error:", error);
+    console.error("AI Error:", error);
     res.status(500).json({ response: "Error processing AI request." });
   }
 });
@@ -113,54 +82,71 @@ app.post("/chat", async (req, res) => {
 app.post("/log", async (req, res) => {
   try {
     const { type, message, location, userId } = req.body;
-    if (!message || !userId) return res.status(400).json({ response: "Invalid alert details." });
+
+    if (!message || !userId) {
+      return res.status(400).json({ response: "Invalid alert details." });
+    }
 
     let alertType = "general";
-    const securityKeywords = ["domestic violence", "sexual assault", "violence", "accident"];
-    const disasterKeywords = ["earthquake", "flood", "hurricane", "tornado"];
+    let detectedKeyword = "";
 
+    // 🔍 Check if it's a security-related alert
     for (const keyword of securityKeywords) {
       if (message.toLowerCase().includes(keyword)) {
         alertType = "security";
+        detectedKeyword = keyword;
         break;
       }
     }
+
+    // 🔍 Check if it's a natural disaster alert
     for (const keyword of disasterKeywords) {
       if (message.toLowerCase().includes(keyword)) {
         alertType = "geolocation";
+        detectedKeyword = keyword;
         break;
       }
     }
 
     const now = Date.now();
-    if (users[userId] && now - users[userId].lastAlert < 3600000) {
-      const remainingTime = Math.ceil((3600000 - (now - users[userId].lastAlert)) / 60000);
-      return res.status(429).json({ response: `🚫 You can only submit one alert per hour. Try again in ${remainingTime} minutes.` });
+
+    // 🏆 Security Alerts: 1 per 24 hours
+    if (alertType === "security" && users[userId] && now - users[userId].lastAlert < 86400000) {
+      return res.status(429).json({ status: "rejected", message: `🚫 You can only submit one security alert every 24 hours.` });
     }
 
-    if (alertType === "geolocation" && location) {
-      try {
-        const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${location.lat},${location.lon}`);
-        const currentConditions = response.data.current.condition.text.toLowerCase();
+    // 🚨 Enforce 1-Hour Limit for All Alerts
+    if (users[userId] && now - users[userId].lastAlert < 3600000) {
+      const remainingTime = Math.ceil((3600000 - (now - users[userId].lastAlert)) / 60000);
+      return res.status(429).json({ status: "rejected", message: `🚫 Sorry, you can only submit one alert per hour. Try again in ${remainingTime} minutes.` });
+    }
 
-        if (
-          (message.includes("earthquake") && !currentConditions.includes("quake")) ||
-          (message.includes("flood") && !currentConditions.includes("flood")) ||
-          (message.includes("hurricane") && !currentConditions.includes("hurricane"))
-        ) {
-          return res.status(400).json({ response: "🚫 No official warning issued for this disaster at your location." });
-        }
-      } catch (error) {
-        console.error("Disaster verification error:", error);
+    // 🌍 Validate location & verify natural disaster alerts
+    if (alertType === "geolocation") {
+      if (!location || !location.lat || !location.lon) {
+        return res.status(400).json({ status: "rejected", message: "🚫 Location is required for natural disaster alerts." });
+      }
+
+      const isDisasterHappening = await verifyDisaster(location, detectedKeyword);
+      
+      if (!isDisasterHappening) {
+        return res.status(400).json({ status: "rejected", message: "🚫 No official warning has been issued for this disaster at your location. Your alert was not submitted." });
       }
     }
 
+    // ✅ Store user alert time (prevents spam)
     users[userId] = { lastAlert: now, alertType };
-    res.json({ logId: `alert-${now}`, response: "✅ Alert successfully sent." });
+
+    // 🚨 Show helpline for security alerts
+    if (alertType === "security") {
+      return res.json({ status: "helpline", helpline: helplines[detectedKeyword] || helplines["general"] });
+    }
+
+    res.json({ logId: `alert-${now}`, status: "Verified" });
 
   } catch (error) {
     console.error("Alert logging error:", error);
-    res.status(500).json({ response: "❌ Unable to send alert. Try again later." });
+    res.status(500).json({ response: "Error logging alert." });
   }
 });
 
