@@ -1,0 +1,71 @@
+[
+  {
+  "id": 10,
+  "month": "Feb",
+  "year": "2025",
+  "title": "ACM Kickoff Meeting",
+  "description": "ACM started the semester with a fun and engaging kickoff meeting! Members enjoyed games, delicious pizza, and had a great time connecting with each other. The event provided a perfect opportunity for new and returning members to get to know one another and learn about the exciting plans for the semester. It was a fantastic start to another great term with ACM!."
+  },
+  {
+  "id": 9,
+  "month": "Nov",
+  "year": "2024",
+  "title": "ACM End-of-Semester Hangout",
+  "description": "To wrap up an exciting semester, ACM hosted a fun-filled hangout session where members enjoyed delicious donuts, pizza, and drinks while playing Nintendo Switch games. It was a great way for everyone to relax, connect, and celebrate their achievements before finals. The event brought together tech enthusiasts for one last memorable gathering, filled with laughter, games, and good vibes!"
+  },
+  {
+  "id": 8,
+  "month": "Nov",
+  "year": "2024",
+  "title": "Git & GitHub Workshop",
+  "description": "ACM hosted an informative workshop to help students understand the fundamentals of Git and GitHub. Participants learned about version control, essential industry-relevant tools, and free developer resources available to students. The session provided hands-on experience, making it easier for attendees to get started with Git for their projects. With interactive discussions and practical demonstrations, the workshop equipped students with valuable skills to enhance their coding workflow."
+  },
+  {
+  "id": 7,
+  "month": "Oct",
+  "year": "2024",
+  "title": "Kattis Competition",
+  "description": "ACM hosted an exciting coding competition where participants tackled challenging problems under a one-hour time limit, testing their problem-solving skills and teamwork. Congratulations to Damien Vu and Kiet Tran for securing the top spot and earning a place in the upcoming ICPC competition! The event fostered a competitive yet collaborative atmosphere, and participants wrapped up the day with well-earned pizza and great conversations. We look forward to hosting more coding challenges in the future!"
+  },
+  {
+  "id": 6,
+  "month": "Oct",
+  "year": "2024",
+  "title": "Networking & Internships",
+  "description": "ACM collaborated with the Center for Career Engagement and Alondra Rosas to host an insightful session on networking and internships. Attendees gained valuable strategies for building professional connections and securing internships, making it a highly informative event."
+  },
+  {
+  "id": 5,
+  "month": "Oct",
+  "year": "2024",
+  "title": "Computer Science Panel Talk",
+  "description": "ACM and GDSC successfully hosted an engaging panel discussion featuring esteemed Computer Science professors Sunny Kim, Todd Neller, Cliff Presser, and Daniel White. The panelists shared valuable insights, personal experiences, and advice on navigating the field of Computer Science. As the first event of GDSC and a special collaboration with ACM, it was a fantastic opportunity for students to learn from experts and engage in meaningful discussions. A big thank you to our speakers and attendees—stay tuned for more exciting events ahead!"
+  }, {
+  "id": 4,
+  "month": "Oct",
+  "year": "2024",
+  "title": "Soldering Workshop",
+  "description": "Our recent soldering workshop was a fantastic hands-on experience where students of all skill levels came together to learn, build, and experiment with circuits. From first-timers to seasoned pros, everyone had the chance to develop technical skills, spark creativity, and connect over a shared passion for making. Huge thanks to everyone who participated and helped make this event a success—we can’t wait for the next one! "
+  },
+  {
+  "id": 3,
+  "month": "Sept",
+  "year": "2024",
+  "title": "Mug & Shirt Design",
+  "description": "Mug & Shirt Design event was a fantastic celebration of creativity and self-expression! Participants brought their unique ideas to life, designing custom mugs and shirts while making fun memories along the way. A huge thank you to everyone who joined and showcased their artistic talents. "
+  },
+  {
+  "id": 2,
+  "month": "Sept",
+  "year": "2024",
+  "title": "ACM Kickoff Meeting",
+  "description": "ACM kicked off the semester with an exciting colloquium on September 10! Students of all CS levels joined to share valuable tips and tricks to support their CS journey. Many brought their laptops to follow along, making the session interactive and engaging. We also provided a brief introduction to what ACM has planned for the semester."
+  }, {
+  "id": 1,
+  "month": "Feb",
+  "year": "2024",
+  "title": "Visit to ICL",
+  "description": "ACM had an exciting visit to the Innovative Creative Lab (ICL)! We met at Glat 103 and walked over to the West Building, where we explored the lab and learned about its cutting-edge technology and creative opportunities."
+  }
+  ]
+  
