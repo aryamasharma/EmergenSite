@@ -10,14 +10,18 @@ const EvacuationMap: React.FC = () => {
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    if (!document.querySelector("#google-maps-script")) {
-      const script = document.createElement("script");
-      script.id = "google-maps-script";
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&callback=initMap`;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    }
+    const loadGoogleMapsScript = () => {
+      if (!document.querySelector("#google-maps-script")) {
+        const script = document.createElement("script");
+        script.id = "google-maps-script";
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&callback=initMap`;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
+    };
+
+    loadGoogleMapsScript();
   }, []);
 
   useEffect(() => {
