@@ -7,45 +7,64 @@ const EvacuationMap: React.FC = () => {
   const [shelterName, setShelterName] = useState<string | null>(null);
   const [error, setError] = useState<string>("");
 
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY; // ✅ Get API Key from .env
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        async (position) => {
           const loc = { lat: position.coords.latitude, lon: position.coords.longitude };
           setGeoLocation(loc);
 
-          // Request evacuation route
-          axios.post("http://localhost:5000/evacuation-route", { location: loc })
-            .then((res) => {
-              setRoute(res.data.route);
-              setShelterName(res.data.shelter);
-            })
-            .catch(() => setError("No active evacuation routes."));
+          try {
+            // ✅ Request evacuation route from backend
+            const res = await axios.post("http://localhost:5000/evacuation-route", { location: loc });
+            setRoute(res.data.route);
+            setShelterName(res.data.shelter);
+          } catch {
+            setError("⚠️ No active evacuation routes found.");
+          }
         },
-        () => setError("Geolocation is disabled. Cannot show evacuation routes.")
+        () => setError("⚠️ Geolocation is disabled. Enable location services."),
+        { enableHighAccuracy: true }
       );
+    } else {
+      setError("⚠️ Geolocation is not supported by your browser.");
     }
   }, []);
 
   return (
-    <div>
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-white">
       <h2 className="text-lg font-bold text-blue-400">🗺️ Evacuation Map</h2>
 
       {error && <p className="text-red-400 mt-2">{error}</p>}
 
-      {route ? (
+      {geoLocation ? (
         <>
-          <p className="mt-2">🚶 Nearest Safe Shelter: <strong>{shelterName}</strong></p>
-          <iframe
-            width="100%"
-            height="250"
-            src={`https://www.google.com/maps/embed/v1/directions?key=YOUR_GOOGLE_MAPS_API_KEY&origin=${geoLocation?.lat},${geoLocation?.lon}&destination=${shelterName}&mode=walking`}
-            allowFullScreen
-            className="mt-2 rounded-lg shadow-lg"
-          ></iframe>
+          <p className="mt-2">📍 Your Current Location: <strong>({geoLocation.lat}, {geoLocation.lon})</strong></p>
+          {route ? (
+            <>
+              <p className="mt-2">🚶 Nearest Safe Shelter: <strong>{shelterName}</strong></p>
+              <iframe
+                width="100%"
+                height="250"
+                src={`https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${geoLocation.lat},${geoLocation.lon}&destination=${shelterName}&mode=walking`}
+                allowFullScreen
+                className="mt-2 rounded-lg shadow-lg"
+              ></iframe>
+            </>
+          ) : (
+            <iframe
+              width="100%"
+              height="250"
+              src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${geoLocation.lat},${geoLocation.lon}`}
+              allowFullScreen
+              className="mt-2 rounded-lg shadow-lg"
+            ></iframe>
+          )}
         </>
       ) : (
-        <p className="mt-2">📍 Showing your current location.</p>
+        <p className="mt-2">📍 Detecting your location...</p>
       )}
     </div>
   );
