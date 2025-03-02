@@ -28,7 +28,7 @@ const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
             },
             modes: {
                 push: {
-                    quantity: 4,
+                    quantity: 15,
                 },
                 repulse: {
                     distance: 100,
@@ -61,7 +61,7 @@ const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
                 density: {
                     enable: true,
                 },
-                value: 120,
+                value: 500,
             },
             opacity: {
                 value: 0.7,  // ✅ Reduced opacity for a softer effect
