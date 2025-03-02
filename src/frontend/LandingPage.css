@@ -3,8 +3,7 @@
 /* Ensure the body and html take full height */
 html, body {
     margin: 10px;
-    padding: 10px;
-    height: 100%;
+    padding: 15px;
   }
   
   /* Main container styling */
@@ -25,7 +24,7 @@ html, body {
   
   /* Emergency Message styling */
   .bg-red-600 {
-    background-color: #dc2626;
+    background-color: #430d0d;
   }
   
   .p-4 {
@@ -60,7 +59,7 @@ html, body {
   
   .md\:grid-cols-2 {
     @media (min-width: 768px) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 5fr));
     }
   }
   
@@ -69,13 +68,15 @@ html, body {
   }
   
   .p-6 {
-    padding: 1.5rem;
+    padding: 2rem;
   }
   
+  /* Background for the boxes */
   .bg-gray-800 {
     background-color: #2d2d2d;
   }
   
+  /* Rounded corners for the boxes */
   .rounded-lg {
     border-radius: 0.5rem;
   }
@@ -86,19 +87,23 @@ html, body {
     margin-right: 1.5rem;
   }
   
+  /* Space between the two columns and emergency contacts */
   .mt-6 {
     margin-top: 1.5rem;
   }
   
+  /*Inside the Emergency Contacts Section */
   .text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
   
+  /*Red colored fonts*/
   .text-red-400 {
     color: #f87171;
   }
   
+  /*For immediate assistance wala text*/
   .text-gray-300 {
     color: #d1d5db;
   }
@@ -111,18 +116,37 @@ html, body {
     margin-top: 1rem;
   }
   
+  /*Color for the send alert and call 911 buttons*/
   .bg-red-500 {
-    background-color: #ef4444;
+    background-color: #812424;
   }
   
+  /*For the cal 911 button*/
   .px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #812424;
   }
   
   .py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+  }
+
+   /* Hover effect for buttons */
+   .bg-red-500:hover {
+    background-color: #a83232; /* Slightly lighter red for hover */
+    border-color: #a83232; /* Adjust border color on hover */
+    color: #030202; /* Change text color to black on hover */
+    }
+
+  /* Hover effect for the call 911 button */
+  .px-6:hover {
+    background-color: #a83232; /* Slightly lighter red for hover */
+    border-color: #a83232; /* Adjust border color on hover */
+    color: #030202; /* Change text color to black on hover */
   }
   
   /* Additional responsive adjustments */
