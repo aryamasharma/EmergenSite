@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-/*import Navbar from "./Navbar"; // Assuming Navbar is already built */
+// import Navbar from "./Navbar"; // Assuming Navbar is already built
 import AlertSystem from "./AlertSystem";
 import EvacuationMap from "./EvacuationMap";
 
