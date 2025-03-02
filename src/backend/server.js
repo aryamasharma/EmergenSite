@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 import axios from "axios"; // Required for API calls
 
 dotenv.config();
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
