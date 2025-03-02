@@ -13,7 +13,7 @@ const LandingPage: React.FC = () => {
 
       {/* ✅ Emergency Message */}
       <div className="bg-red-600 p-4 text-center text-lg font-bold shadow-lg">
-        🚨 No active emergency alerts at this time.
+        🚨 No active emergency alerts at this time. 🚨
       </div>
 
       {/* ✅ Main Section - Alert System & Evacuation Map */}
