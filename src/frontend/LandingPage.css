@@ -1,4 +1,10 @@
+<<<<<<< Updated upstream
 html, body {
+=======
+/* 🌍 Global Styling */
+html,
+body {
+>>>>>>> Stashed changes
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
@@ -52,7 +58,12 @@ html, body {
 }
 
 .highlight {
+<<<<<<< Updated upstream
   color: rgb(255, 180, 180); /* ✅ Light reddish white */
+=======
+  color: #d6a85f;
+  /* 🌟 Muted Gold Highlight */
+>>>>>>> Stashed changes
 }
 
 .hero-subtitle {
@@ -65,8 +76,14 @@ html, body {
 .chatbot-box {
   width: 90%;
   max-width: 500px;
+<<<<<<< Updated upstream
   background: rgba(50, 0, 0, 0.2); /* ✅ Deep Red Glassmorphism */
   backdrop-filter: blur(8px);
+=======
+  background: rgba(255, 255, 255, 0.05);
+  /* 🔵 Subtle Glassmorphism */
+  backdrop-filter: blur(10px);
+>>>>>>> Stashed changes
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(100, 0, 0, 0.15);
@@ -85,7 +102,12 @@ html, body {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
+<<<<<<< Updated upstream
   color: rgb(255, 180, 180); /* ✅ Soft reddish white */
+=======
+  color: #d6a85f;
+  /* 🌟 Gold Accent */
+>>>>>>> Stashed changes
 }
 
 /* 🚨 Emergency Alert Section */
@@ -116,7 +138,7 @@ html, body {
 
 @media (min-width: 768px) {
   .features-grid {
-      grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -158,24 +180,45 @@ html, body {
 }
 
 .call-911 {
-  display: inline-block;
   margin-top: 10px;
+<<<<<<< Updated upstream
   background: #b93838; /* ✅ Solid Red */
+=======
+  background: #d94b4b;
+  /* Solid red */
+>>>>>>> Stashed changes
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: bold;
   color: rgb(255, 235, 235); /* ✅ Light Reddish White */
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  display: block;
+  /* Always visible */
+  width: fit-content;
+  /* Adjust width to fit content */
+  margin-left: auto;
+  /* Center horizontally */
+  margin-right: auto;
+  /* Center horizontally */
 }
 
 .call-911:hover {
+  background: white;
+  /* Turns white */
+  color: #d94b4b;
+  /* Text turns red */
   transform: scale(1.08);
+<<<<<<< Updated upstream
   box-shadow: 0px 5px 15px rgba(100, 0, 0, 0.3);
+=======
+>>>>>>> Stashed changes
 }
+
 
 /* 🎭 Smooth Pulse Effect for Alerts */
 @keyframes pulse {
+<<<<<<< Updated upstream
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.05); opacity: 0.9; }
   100% { transform: scale(1); opacity: 1; }
@@ -183,4 +226,20 @@ html, body {
 
 h2.alert-title{
   color:  rgb(255, 235, 235);
+=======
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+>>>>>>> Stashed changes
 }
