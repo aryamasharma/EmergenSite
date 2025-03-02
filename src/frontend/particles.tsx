@@ -1,29 +1,38 @@
 import React, { useCallback, useMemo } from "react";
 import Particles from "react-tsparticles";
-import type { Engine, Container } from "tsparticles-engine"; // Import types
+import type { Engine, Container, IOptions, RecursivePartial } from "tsparticles-engine"; // ✅ Ensure correct typings
 import { loadSlim } from "tsparticles-slim"; 
 
-// ✅ Define Props Type
 interface ParticlesComponentProps {
     id?: string;
 }
 
 const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
-    const options = useMemo(() => ({
+    const options: RecursivePartial<IOptions> = useMemo(() => ({
         background: {
             color: {
-                value: "#000000",
+                value: "#1a1a2e", // Dark blue for better contrast
             },
         },
         fpsLimit: 120,
         interactivity: {
+            events: {
+                onHover: {
+                    enable: true,
+                    mode: "repulse",
+                },
+                onClick: {
+                    enable: true,
+                    mode: "push",
+                },
+            },
             modes: {
                 push: {
-                    distance: 200,
-                    duration: 15,
+                    quantity: 4,
                 },
-                grab: {
-                    distance: 150,
+                repulse: {
+                    distance: 100,
+                    duration: 0.4,
                 },
             },
         },
@@ -73,8 +82,9 @@ const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
     }, []);
 
     // ✅ Define particles loaded function with correct type
-    const particlesLoaded = useCallback((container?: Container) => {
+    const particlesLoaded = useCallback(async (container?: Container) => {
         console.log(container);
+        return Promise.resolve();
     }, []);
 
     return <Particles id={id} init={particlesInit} loaded={particlesLoaded} options={options} />;
