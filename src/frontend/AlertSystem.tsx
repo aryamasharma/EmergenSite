@@ -3,55 +3,54 @@ import axios from "axios";
 
 const AlertSystem: React.FC = () => {
   const [alert, setAlert] = useState<string>("");
-  const [logId, setLogId] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
+  const [logId, setLogId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const sendAlert = async () => {
     if (!alert) return;
     setIsSubmitting(true);
-    setError("");
-    setSuccess("");
+    setError(null);
+
     try {
       const res = await axios.post("http://localhost:5000/log", {
         type: "emergency-alert",
         message: alert,
-        userId: "test_user", // Simulated user ID
+        userId: "user123", // ✅ Simulate a unique user
+        location: { lat: 40.7128, lon: -74.0060 }, // ✅ Simulated location (Replace with real geolocation)
       });
 
-      if (res.data.status === "helpline") {
-        setError(`Helpline: ${res.data.helpline}`);
+      if (res.data.response.startsWith("🚫")) {
+        setError(res.data.response);
       } else {
-        setSuccess("✅ Alert has been sent successfully!");
         setLogId(res.data.logId);
       }
     } catch (error) {
-      setError("🚫 Unable to send alert. Try again later.");
+      console.error("Logging error:", error);
+      setError("❌ Unable to send alert. Try again later.");
     }
     setIsSubmitting(false);
   };
 
   return (
-    <div>
-      <h2 className="text-lg font-bold text-blue-400">🚨 Report an Emergency</h2>
+    <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg">
+      <h2 className="text-xl font-bold text-red-400">🚨 Report an Emergency</h2>
       <input
         type="text"
         placeholder="Describe the emergency..."
         value={alert}
         onChange={(e) => setAlert(e.target.value)}
-        className="border p-2 w-full rounded-md bg-gray-700 text-white mt-2"
+        className="border p-2 w-full mt-2 rounded-md bg-gray-900 text-white"
       />
       <button
-        className="bg-red-500 text-white px-4 py-2 mt-2 rounded-md w-full disabled:bg-gray-500"
+        className={`bg-red-600 text-white p-2 mt-2 rounded-md w-full ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
         onClick={sendAlert}
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Sending..." : "Send Alert"}
+        {isSubmitting ? "Submitting..." : "Send Alert"}
       </button>
-      {success && <p className="mt-2 text-green-400">{success}</p>}
-      {error && <p className="mt-2 text-red-400">{error}</p>}
-      {logId && <p className="mt-2 text-gray-300">Alert logged with ID: {logId}</p>}
+      {error && <p className="text-red-400 mt-2">{error}</p>}
+      {logId && <p className="text-green-400 mt-2">✅ Alert Sent (ID: {logId})</p>}
     </div>
   );
 };
