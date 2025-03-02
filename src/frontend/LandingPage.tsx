@@ -49,7 +49,6 @@ const LandingPage: React.FC = () => {
       {/* ✅ Emergency Contacts */}
       <div className="contact-section">
         <h2 className="contact-title">📞 Emergency Contacts</h2>
-        <p>For immediate assistance, contact:</p>
         <a href="tel:911" className="call-911">Call 911</a>
       </div>
     </div>
