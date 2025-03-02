@@ -93,8 +93,8 @@ const EventsPage: React.FC = () => {
         <div className="events-page-container">
             <div className="header-section">
                 <div className="header-content">
-                    <h1>Welcome to Events</h1>
-                    <p>Discover the latest events happening at ACM.</p>
+                    <h1>Welcome to Past Events</h1>
+                    <p>Discover what events happened recently.</p>
                 </div>
             </div>
             <div className="main-timeline" ref={timelineRef}>
