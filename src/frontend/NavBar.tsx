@@ -6,24 +6,40 @@ import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Function to scroll smoothly to AI Chatbot
+  const scrollToChatbot = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const chatbotSection = document.getElementById("chatbot-section");
+    if (chatbotSection) {
+      chatbotSection.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false); // Close mobile menu
+    }
+  };
+
+  // Function to scroll back to the top (Home)
+  const scrollToTop = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsOpen(false); // Close mobile menu
+  };
+
   return (
     <nav className="navbar">
       <div className="container">
-        {/* ✅ Logo */}
         <div className="logo">EmergenSite 🚨</div>
 
         {/* ✅ Desktop Navigation */}
         <div className="nav-links">
-          <NavLink to="/" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+          <a href="/" className="nav-item" onClick={scrollToTop}>
             Home
-          </NavLink>
-          <NavLink to="/chatbot" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+          </a>
+          <a href="/" className="nav-item" onClick={scrollToChatbot}>
             AI Chatbot
-          </NavLink>
-          <NavLink to="/EventsPage" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+          </a>
+          <NavLink to="/EventsPage" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
             Events
           </NavLink>
-          <NavLink to="/Settings" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+          <NavLink to="/Settings" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
             Settings
           </NavLink>
         </div>
@@ -37,12 +53,12 @@ const Navbar = () => {
       {/* ✅ Mobile Navigation Menu */}
       {isOpen && (
         <div className="mobile-menu">
-          <NavLink to="/" className="mobile-item" onClick={() => setIsOpen(false)}>
+          <a href="/" className="mobile-item" onClick={scrollToTop}>
             Home
-          </NavLink>
-          <NavLink to="/chatbot" className="mobile-item" onClick={() => setIsOpen(false)}>
+          </a>
+          <a href="/" className="mobile-item" onClick={scrollToChatbot}>
             AI Chatbot
-          </NavLink>
+          </a>
           <NavLink to="/alerts" className="mobile-item" onClick={() => setIsOpen(false)}>
             Alerts
           </NavLink>
