@@ -57,7 +57,7 @@
 }
 
 .nav-item.active {
-    color: red;
+    color: #ff0000;
 }
 
 .nav-item:hover {

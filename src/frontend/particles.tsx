@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import Particles from "react-tsparticles";
-import type { Engine, Container, IOptions, RecursivePartial } from "tsparticles-engine"; // ✅ Ensure correct typings
+import type { Engine, Container, IOptions, RecursivePartial } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim"; 
 
 interface ParticlesComponentProps {
@@ -11,7 +11,7 @@ const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
     const options: RecursivePartial<IOptions> = useMemo(() => ({
         background: {
             color: {
-                value: "#1a1a2e", // Dark blue for better contrast
+                value: "#101010",  // ✅ Updated background color to match the app
             },
         },
         fpsLimit: 120,
@@ -38,10 +38,10 @@ const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
         },
         particles: {
             color: {
-                value: "#b87230",
+                value: "#ff0000",  // ✅ Updated particle color for better visibility
             },
             links: {
-                color: "#b87230",
+                color: "#ff0000",
                 distance: 150,
                 enable: true,
                 opacity: 0.3,
@@ -61,10 +61,10 @@ const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
                 density: {
                     enable: true,
                 },
-                value: 150,
+                value: 120,
             },
             opacity: {
-                value: 1.0,
+                value: 0.7,  // ✅ Reduced opacity for a softer effect
             },
             shape: {
                 type: "circle",
@@ -76,12 +76,10 @@ const ParticlesComponent: React.FC<ParticlesComponentProps> = ({ id }) => {
         detectRetina: true,
     }), []);
 
-    // ✅ Define engine initialization function with proper typing
     const particlesInit = useCallback(async (engine: Engine) => {
         await loadSlim(engine); 
     }, []);
 
-    // ✅ Define particles loaded function with correct type
     const particlesLoaded = useCallback(async (container?: Container) => {
         console.log(container);
         return Promise.resolve();

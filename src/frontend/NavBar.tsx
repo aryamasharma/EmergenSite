@@ -17,26 +17,6 @@ const Navbar = () => {
           <NavLink to="/" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
             Home
           </NavLink>
-<<<<<<< Updated upstream
-          <NavLink to="/" className={({ isActive }) =>
-            isActive ? "nav-item active" : "nav-item"
-          }>
-          </NavLink>
-          <NavLink to="./Chatbot" className={({ isActive }) =>
-            isActive ? "nav-item active" : "nav-item"
-          }>
-            AI Chatbot
-          </NavLink>
-          <NavLink to="/EventsPage" className={({ isActive }) =>
-            isActive ? "nav-item active" : "nav-item"
-          }>
-            Events
-          </NavLink>
-          <NavLink to="/Settings" className={({ isActive }) =>
-            isActive ? "nav-item active" : "nav-item"
-          }>
-            Settings
-=======
           <NavLink to="/chatbot" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
             AI Chatbot
           </NavLink>
@@ -45,7 +25,6 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/contacts" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
             Emergency Contacts
->>>>>>> Stashed changes
           </NavLink>
         </div>
 
@@ -61,28 +40,6 @@ const Navbar = () => {
           <NavLink to="/" className="mobile-item" onClick={() => setIsOpen(false)}>
             Home
           </NavLink>
-<<<<<<< Updated upstream
-          <NavLink
-            to="./Chatbot"
-            className="mobile-item"
-            onClick={() => setIsOpen(false)}
-          >  
-          AI Chatbot
-          </NavLink>
-          Events
-          <NavLink
-            to="/EventsPage"
-            className="mobile-item"
-            onClick={() => setIsOpen(false)}
-          >
-          </NavLink>
-            Settings
-          <NavLink
-            to="/Settings"
-            className="mobile-item"
-            onClick={() => setIsOpen(false)}
-          >
-=======
           <NavLink to="/chatbot" className="mobile-item" onClick={() => setIsOpen(false)}>
             AI Chatbot
           </NavLink>
@@ -91,7 +48,6 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/contacts" className="mobile-item" onClick={() => setIsOpen(false)}>
             Emergency Contacts
->>>>>>> Stashed changes
           </NavLink>
         </div>
       )}

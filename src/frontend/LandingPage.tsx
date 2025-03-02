@@ -1,17 +1,4 @@
 import React from "react";
-<<<<<<< Updated upstream
-import AlertSystem from "./AlertSystem";
-import EvacuationMap from "./EvacuationMap";
-import NavBar from "./NavBar";
-
-const LandingPage: React.FC = () => {
-  return (
-    <>
-    <NavBar />
-    <div className="bg-gray-900 min-h-screen text-white">
-      <div className="bg-red-600 p-4 text-center text-lg font-bold shadow-lg">
-        🚨 No active emergency alerts at this time. 🚨
-=======
 import Navbar from "./NavBar";
 import AlertSystem from "./AlertSystem";
 import EvacuationMap from "./EvacuationMap";
@@ -39,33 +26,26 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ✅ Chatbot Section */}
-      <div className="chatbot-box">
-        <h2 className="chatbot-title">💬 AI Chatbot Assistance</h2>
-        <Chatbot />
->>>>>>> Stashed changes
-      </div>
-
-      {/* ✅ Emergency Alert Section */}
+      {/* ✅ Emergency Alert Section - Moved Up */}
       <div className="alert-box">
         🚨 No active emergency alerts at this time. Stay safe! 🚨
       </div>
 
-      {/* ✅ Features Section */}
-      <section className="features-grid">
-        <div className="feature-card">
-          <h2>🚑 AI Emergency Chatbot</h2>
-          <p>Get real-time AI guidance during emergencies.</p>
-        </div>
-        <div className="feature-card">
-          <h2>🗺️ Evacuation Map</h2>
+      {/* ✅ Features Section - Centered with Padding */}
+      <section className="features-grid" style={{ display: "flex", justifyContent: "center", gap: "30px", padding: "20px" }}>
+        <div className="feature-card" style={{ flex: "1", maxWidth: "500px", textAlign: "center" }}>
           <EvacuationMap />
         </div>
-        <div className="feature-card">
-          <h2>📢 Live Alerts</h2>
+        <div className="feature-card" style={{ flex: "1", maxWidth: "500px", textAlign: "center" }}>
           <AlertSystem />
         </div>
       </section>
+
+      {/* ✅ Chatbot Section - Moved Further Down */}
+      <div className="chatbot-box" style={{ marginTop: "60px", textAlign: "center" }}>
+        <h2 className="chatbot-title">💬 SafeZone AI Chatbot</h2>
+        <Chatbot />
+      </div>
 
       {/* ✅ Emergency Contacts */}
       <div className="contact-section">
@@ -74,7 +54,6 @@ const LandingPage: React.FC = () => {
         <a href="tel:911" className="call-911">Call 911</a>
       </div>
     </div>
-    </>
   );
 };
 

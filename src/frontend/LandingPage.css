@@ -62,19 +62,18 @@ html, body {
   opacity: 0.9;
 }
 
-/* 🚀 Chatbot Box - Adjusted Positioning */
+/* 🚀 Chatbot Box */
 .chatbot-box {
   width: 90%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05); /* 🔵 Subtle Glassmorphism */
   backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.08);
   text-align: center;
-  margin-top: 40px; /* Added spacing */
-  margin-bottom: 40px; /* Added spacing */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: -40px;
 }
 
 .chatbot-box:hover {
@@ -150,7 +149,7 @@ html, body {
 .contact-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #d6a85f;
+  color: #c97c4a;
 }
 
 .call-911 {
@@ -168,4 +167,11 @@ html, body {
 .call-911:hover {
   transform: scale(1.08);
   box-shadow: 0px 5px 15px rgba(217, 75, 75, 0.3);
+}
+
+/* 🎭 Smooth Pulse Effect for Alerts */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
 }
