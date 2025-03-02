@@ -1,0 +1,77 @@
+/* 🌍 DEI Requests Page */
+.dei-container {
+    background: rgba(37, 33, 33, 0.2); /* ✅ Dark muted red */
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    color: rgb(235, 215, 215); /* ✅ Soft reddish-white */
+}
+
+/* ✅ Title */
+.dei-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(255, 180, 180); /* ✅ Light Reddish Accent */
+    margin-bottom: 15px;
+}
+
+/* ✅ Success Message */
+.dei-message {
+    background: rgba(134, 147, 138, 0.2);
+    color: rgb(145, 151, 145);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* 📋 Table Styling */
+.dei-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+}
+
+/* 📌 Table Header */
+.dei-table-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    font-weight: bold;
+    color: rgb(255, 150, 150);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 📌 Table Row */
+.dei-table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    transition: background 0.3s ease;
+    border-radius: 6px;
+}
+
+/* 🔘 Submit Button */
+.dei-submit-button {
+    background: #982a0b; /* ✅ Dark Red */
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: rgb(240, 220, 220);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    border: none;
+}
+
+.dei-submit-button:hover {
+    background: #b93838; /* ✅ Brighter Red */
+    transform: scale(1.05);
+}

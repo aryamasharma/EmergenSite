@@ -1,0 +1,155 @@
+/* 🌍 Full Page Layout */
+.settings-container {
+    display: flex;
+    min-height: 100vh;
+    color: #e6d6d6;
+    position: relative;
+    padding: 20px;
+}
+
+/* ✅ Sidebar Styling */
+.settings-sidebar {
+    width: 300px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    backdrop-filter: blur(10px);
+    min-height: 100vh;
+    border-right: 1px solid rgba(119, 33, 33, 0.1);
+}
+
+/* ✅ Sidebar Title */
+.sidebar-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: rgb(240, 200, 200);
+    margin-bottom: 15px;
+}
+
+/* ✅ Sidebar Category Headers */
+.settings-category h4 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: rgb(220, 170, 170); /* ✅ Muted red */
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* ✅ Sidebar Links - Subtle Hover Effect */
+.settings-link {
+    display: block;
+    padding: 12px 15px;
+    color: rgb(230, 190, 190);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.settings-link:hover {
+    color: rgb(255, 180, 180);
+    background: rgba(255, 80, 80, 0.15);
+    transform: scale(1.05);
+}
+
+/* ✅ Active Link */
+.settings-link.active {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* ✅ Main Content Area */
+.settings-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    position: relative;
+    z-index: 3;
+}
+
+/* 🔥 Enlarged Form Styling */
+.settings-form {
+    width: 100%;
+    max-width: 600px; /* ✅ Increased Width */
+    padding: 50px; /* ✅ Increased Padding */
+    border-radius: 15px; /* ✅ Slightly More Rounded */
+    backdrop-filter: blur(12px);
+    text-align: center;
+}
+
+/* ✅ Form Title */
+.settings-title {
+    font-size: 2rem; /* ✅ Bigger Font */
+    font-weight: bold;
+    color: rgb(220, 190, 190);
+    margin-bottom: 25px; /* ✅ More Spacing */
+}
+
+/* ✅ Input Fields - No Red Borders */
+.settings-form input,
+.settings-form textarea {
+    width: 100%;
+    padding: 15px; /* ✅ Increased Padding */
+    border-radius: 10px; /* ✅ Slightly More Rounded */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* ✅ Faint border */
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 1.1rem;
+    transition: border 0.3s ease, background 0.3s ease;
+    margin-bottom: 18px; /* ✅ More Spacing */
+    text-align: center;
+}
+
+.settings-form input:focus,
+.settings-form textarea:focus {
+    background: rgba(45, 33, 33, 0.12);
+    border-color: rgba(255, 180, 180, 0.3);
+}
+
+/* 🔘 Submit Button */
+.submit-button {
+    background: rgba(180, 80, 80, 0.7); /* ✅ Muted red */
+    padding: 16px; /* ✅ Bigger Button */
+    border-radius: 10px;
+    font-size: 1.2rem; /* ✅ Bigger Font */
+    font-weight: bold;
+    color: rgb(240, 220, 220);
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s ease, transform 0.2s ease;
+    border: none;
+}
+
+.submit-button:hover {
+    background: rgba(200, 90, 90, 0.8);
+    transform: scale(1.05);
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+    .settings-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .settings-sidebar {
+        width: 100%;
+        text-align: center;
+        border-right: none;
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .settings-content {
+        width: 100%;
+    }
+
+    .settings-form {
+        width: 90%;
+    }
+}

@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import axios from "axios";
-
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { UserOutlined, LaptopOutlined } from "@ant-design/icons";
 import { useForm, Controller } from "react-hook-form";
-import { slide as Menu } from 'react-burger-menu';
 import DEIRequests from "./DEIRequests";
-import { Button } from "react-bootstrap";
+import ParticlesComponent from "./particles"; // ✅ Ensure it's imported
+import "./Settings.css"; // ✅ Import the new CSS
 
 interface MenuItem {
   key: string;
@@ -16,27 +12,25 @@ interface MenuItem {
   children?: { key: string; label: string }[];
 }
 
-
 const Settings: React.FC = () => {
-  const [selectedKey, setSelectedKey] = useState<string>('11');
+  const [selectedKey, setSelectedKey] = useState<string>("11");
   const { control, handleSubmit } = useForm();
 
   const items: MenuItem[] = [
     {
-      key: '1',
+      key: "1",
       icon: <UserOutlined />,
-      label: 'Information Settings',
+      label: "Information Settings",
       children: [
-        { key: '11', label: 'Personal Information' },
-        { key: '12', label: 'Event Information' },
+        { key: "11", label: "Personal Information" },
       ],
     },
     {
-      key: '2',
+      key: "2",
       icon: <LaptopOutlined />,
-      label: 'Accommodations',
-      children: [{ key: '21', label: 'Requests' }],
-    }
+      label: "Accommodations",
+      children: [{ key: "21", label: "DEI Requests" }], // ✅ Fixed label
+    },
   ];
 
   const handleClick = (key: string) => {
@@ -49,22 +43,21 @@ const Settings: React.FC = () => {
 
   const renderContent = () => {
     switch (selectedKey) {
-      case '11':
+      case "11":
         return (
-          <div>
-            <h2 style={{ textAlign: 'center' }}>Personal Information</h2>
-            <p style={{ marginTop: 30, marginBottom: 30, textAlign: "center" }}></p>
+          <div className="settings-form">
+            <h2 className="settings-title">Personal Information</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div style={{ marginBottom: '16px' }}>
+              <div>
                 <label>Name</label>
                 <Controller
                   name="name"
                   control={control}
-                  rules={{ required: 'Name is required' }}
+                  rules={{ required: "Name is required" }}
                   render={({ field }) => <input {...field} placeholder="Damon Salvator" />}
                 />
               </div>
-              <div style={{ marginBottom: '16px' }}>
+              <div>
                 <label>Pronouns</label>
                 <Controller
                   name="pronouns"
@@ -72,7 +65,7 @@ const Settings: React.FC = () => {
                   render={({ field }) => <input {...field} placeholder="Example: she/they" />}
                 />
               </div>
-              <div style={{ marginBottom: '16px' }}>
+              <div>
                 <label>Phone</label>
                 <Controller
                   name="phonenumber"
@@ -80,50 +73,45 @@ const Settings: React.FC = () => {
                   render={({ field }) => <input {...field} placeholder="(704) 567-8103" />}
                 />
               </div>
-              <div style={{ marginBottom: '16px' }}>
+              <div>
                 <label>Bio</label>
-                <Controller
-                  name="bio"
-                  control={control}
-                  render={({ field }) => <textarea {...field} />}
-                />
+                <Controller name="bio" control={control} render={({ field }) => <textarea {...field} />} />
               </div>
-              <div style={{ marginBottom: '16px' }}>
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </div>
+              <button type="submit" className="submit-button">
+                Submit
+              </button>
             </form>
           </div>
         );
-      case '21':
+      case "21":
         return <DEIRequests />;
       default:
-        return null;
+        return <p className="settings-placeholder">Please select a setting from the sidebar.</p>;
     }
   };
 
-
   return (
-    <Container fluid>
-      <Row>
-        <Col md={2} style={{ background: '#fff' }}>
-          <Menu>
-            {items.map((item) => (
-              <div key={item.key}>
-                <h3>{item.label}</h3>
-                {item.children?.map((child) => (
-                  <a key={child.key} onClick={() => handleClick(child.key)}>{child.label}</a>
-                ))}
-              </div>
+    <div className="settings-container">
+      <ParticlesComponent id="particles-bg" /> {/* ✅ Fix background particles */}
+      
+      {/* ✅ Sidebar */}
+      <div className="settings-sidebar">
+        <h3 className="sidebar-title">Settings</h3>
+        {items.map((item) => (
+          <div key={item.key} className="settings-category">
+            <h4>{item.label}</h4>
+            {item.children?.map((child) => (
+              <a key={child.key} onClick={() => handleClick(child.key)} className="settings-link">
+                {child.label}
+              </a>
             ))}
-          </Menu>
-        </Col>
-        <Col md={10} style={{ padding: '24px' }}>
-          {renderContent()}
-        </Col>
-      </Row>
-    </Container>
+          </div>
+        ))}
+      </div>
+
+      {/* ✅ Main Content Area */}
+      <div className="settings-content">{renderContent()}</div>
+    </div>
   );
 };
 
