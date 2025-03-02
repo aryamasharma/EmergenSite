@@ -19,9 +19,6 @@ function App() {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
-        <div className="flex flex-col items-center">
-          <LandingPage />
-        </div>
       </div>
   );
 }
