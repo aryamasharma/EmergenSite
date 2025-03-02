@@ -3,11 +3,11 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import axios from "axios";
 
 import React from "react";
-import { Layout, Menu, Button, Form, Input, Select } from "antd";
+import { Container, Row, Col } from "react-bootstrap";
+import { useForm, Controller } from "react-hook-form";
+import { slide as Menu } from 'react-burger-menu';
 import DEIRequests from "./DEIRequests";
-
-const { Header, Content, Sider } = Layout;
-const { Option } = Select;
+import { Button } from "react-bootstrap";
 
 interface MenuItem {
   key: string;
@@ -38,6 +38,7 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 
 const Settings: React.FC = () => {
   const [selectedKey, setSelectedKey] = useState<string>('11');
+  const { control, handleSubmit } = useForm();
 
   const items: MenuItem[] = [
     {
@@ -54,20 +55,15 @@ const Settings: React.FC = () => {
       icon: <LaptopOutlined />,
       label: 'Accommodations',
       children: [{ key: '21', label: 'Requests' }],
-    },
-    {
-      key: '3',
-      icon: <NotificationOutlined />,
-      label: 'Announcement',
-      children: [
-        { key: '31', label: 'About Us' },
-        { key: '32', label: 'Important Notices' },
-      ],
-    },
+    }
   ];
 
-  const handleClick = (e: { key: string }) => {
-    setSelectedKey(e.key);
+  const handleClick = (key: string) => {
+    setSelectedKey(key);
+  };
+
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
 
   const renderContent = () => {
@@ -77,38 +73,46 @@ const Settings: React.FC = () => {
           <div>
             <h2 style={{ textAlign: 'center' }}>Personal Information</h2>
             <p style={{ marginTop: 30, marginBottom: 30, textAlign: "center" }}></p>
-            <Form
-              name="user_info"
-              labelCol={{ span: 5 }}
-              wrapperCol={{ span: 15 }}
-            >
-              <Form.Item label="Name">
-                <Form.Item
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div style={{ marginBottom: '16px' }}>
+                <label>Name</label>
+                <Controller
                   name="name"
-                  rules={[{ required: true, message: 'Name is required' }]}
-                >
-                  <Input placeholder="Damon Salvator" />
-                </Form.Item>
-              </Form.Item>
-              <Form.Item label="Pronouns">
-                <Form.Item name="pronouns">
-                  <Input placeholder="Example: she/they" />
-                </Form.Item>
-              </Form.Item>
-              <Form.Item label="Phone:">
-                <Form.Item name="phonenumber">
-                  <Input placeholder="(704) 567-8103" />
-                </Form.Item>
-              </Form.Item>
-              <Form.Item name="bio" label="Bio">
-                <Input.TextArea />
-              </Form.Item>
-              <Form.Item label=" " colon={false}>
-                <Button type="primary" htmlType="submit">
+                  control={control}
+                  rules={{ required: 'Name is required' }}
+                  render={({ field }) => <input {...field} placeholder="Damon Salvator" />}
+                />
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <label>Pronouns</label>
+                <Controller
+                  name="pronouns"
+                  control={control}
+                  render={({ field }) => <input {...field} placeholder="Example: she/they" />}
+                />
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <label>Phone</label>
+                <Controller
+                  name="phonenumber"
+                  control={control}
+                  render={({ field }) => <input {...field} placeholder="(704) 567-8103" />}
+                />
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <label>Bio</label>
+                <Controller
+                  name="bio"
+                  control={control}
+                  render={({ field }) => <textarea {...field} />}
+                />
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <Button variant="primary" type="submit">
                   Submit
                 </Button>
-              </Form.Item>
-            </Form>
+              </div>
+            </form>
           </div>
         );
       case '21':
@@ -134,23 +138,25 @@ const Settings: React.FC = () => {
   }, []);
 
   return (
-    <Layout>
-      <Sider width={200} style={{ background: '#fff' }}>
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={[selectedKey]}
-          defaultOpenKeys={['1']}
-          style={{ height: '100%', borderRight: 0 }}
-          items={items}
-          onClick={handleClick}
-        />
-      </Sider>
-      <Layout style={{ padding: '0 24px 24px' }}>
-        <Content style={{ padding: 24, margin: '24px 16px', minHeight: 280, background: '#fff' }}>
+    <Container fluid>
+      <Row>
+        <Col md={2} style={{ background: '#fff' }}>
+          <Menu>
+            {items.map((item) => (
+              <div key={item.key}>
+                <h3>{item.label}</h3>
+                {item.children?.map((child) => (
+                  <a key={child.key} onClick={() => handleClick(child.key)}>{child.label}</a>
+                ))}
+              </div>
+            ))}
+          </Menu>
+        </Col>
+        <Col md={10} style={{ padding: '24px' }}>
           {renderContent()}
-        </Content>
-      </Layout>
-    </Layout>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
