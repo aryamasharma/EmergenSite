@@ -4,13 +4,13 @@
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    height: 50px;
+    height: 70px;
     box-sizing: border-box;
 }
 
@@ -45,7 +45,8 @@
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease-in-out;
-    font-size: 14px;
+    font-size: 20px;
+    align-items: left;
 }
 
 .nav-item.active {
