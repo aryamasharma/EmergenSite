@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from "./NavBar";
+// import Navbar from "./NavBar";
 import AlertSystem from "./AlertSystem";
 import EvacuationMap from "./EvacuationMap";
 
@@ -17,8 +17,8 @@ const LandingPage: React.FC = () => {
   return (
     <div className="bg-gray-900 min-h-screen text-white">
       
-      Navbar
-      <Navbar />
+      {/* Navbar
+      <Navbar /> */}
 
       {/* Emergency Message */}
       <div className="bg-red-600 p-4 text-center text-lg font-bold shadow-lg">
