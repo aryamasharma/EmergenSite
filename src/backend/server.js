@@ -2,13 +2,17 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import axios from "axios"; // Required for API calls
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import axios from "axios"; // Required for geolocation verification
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+// ✅ Initialize Gemini AI
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // 🏆 Store alert data & user submission history
 const users = {}; // { userId: { lastAlert: timestamp, alertType: "general"/"geolocation"/"security" } }
@@ -29,7 +33,6 @@ const helplines = {
 // 🌍 **Real-Time Disaster Verification**
 async function verifyDisaster(location, disasterType) {
   try {
-    // Replace with a real API that provides live disaster alerts based on geolocation.
     const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${location.lat},${location.lon}`);
     
     const currentConditions = response.data.current.condition.text.toLowerCase();
@@ -50,6 +53,32 @@ async function verifyDisaster(location, disasterType) {
   }
 }
 
+// ✅ AI Chatbot API Route
+app.post("/chat", async (req, res) => {
+  try {
+    const { query } = req.body;
+    if (!query) {
+      return res.status(400).json({ response: "Query is required." });
+    }
+
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+
+    const result = await model.generateContent({ contents: [{ role: "user", parts: [{ text: query }] }] });
+    
+    if (!result || !result.response || !result.response.candidates) {
+      return res.status(500).json({ response: "AI response failed." });
+    }
+
+    const responseText = result.response.candidates[0].content.parts[0].text;
+
+    res.json({ response: responseText });
+  } catch (error) {
+    console.error("AI Error:", error);
+    res.status(500).json({ response: "Error processing AI request." });
+  }
+});
+
+// ✅ Alert System API Route
 app.post("/log", async (req, res) => {
   try {
     const { type, message, location, userId } = req.body;
@@ -121,6 +150,6 @@ app.post("/log", async (req, res) => {
   }
 });
 
-// Start Server
+// ✅ Start the Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
