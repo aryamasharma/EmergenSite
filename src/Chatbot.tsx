@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./ChatApp.css"; // ✅ Import CSS
 
 const Chatbot: React.FC = () => {
   const [query, setQuery] = useState<string>("");
@@ -9,6 +10,7 @@ const Chatbot: React.FC = () => {
   const handleChat = async () => {
     if (!query) return;
     setLoading(true);
+    setResponse(""); // Clear previous response
     try {
       const res = await axios.post("http://localhost:5000/chat", { query });
       setResponse(res.data.response);
@@ -20,26 +22,22 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-4">SafeZone AI Chatbot</h1>
+    <div className="chatbot-container">
+      <h1 className="chatbot-title">💬 SafeZone AI Chatbot</h1>
       <input
         type="text"
-        className="border p-2 w-80 rounded-md"
+        className="chatbot-input"
         placeholder="Ask about an emergency or a historical disaster..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button
-        className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md"
-        onClick={handleChat}
-        disabled={loading}
-      >
+      <button className="chatbot-button" onClick={handleChat} disabled={loading}>
         {loading ? "Processing..." : "Ask AI"}
       </button>
       {response && (
-        <div className="mt-4 p-4 bg-white rounded-md shadow-md">
+        <div className="chatbot-response">
           <h2 className="text-lg font-semibold">AI Response:</h2>
-          <p className="text-gray-700 whitespace-pre-line">{response}</p>
+          <p className="typing-effect">{response}</p>
         </div>
       )}
     </div>

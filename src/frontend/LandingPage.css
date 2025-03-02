@@ -1,10 +1,9 @@
-/* 🌍 Global Styling */
 html, body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  background: #101722;
-  color: #e2e6ea;
+  background: #1a1111; /* ✅ Dark muted red */
+  color: rgb(235, 215, 215); /* ✅ Soft red-white */
   scroll-behavior: smooth;
 }
 
@@ -25,9 +24,9 @@ html, body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("https://source.unsplash.com/1600x900/?futuristic,technology,abstract") center/cover;
+  background: url("https://source.unsplash.com/1600x900/?dark,technology,abstract") center/cover;
   position: relative;
-  color: white;
+  color: rgb(245, 225, 225); /* ✅ Softer red-white */
 }
 
 .hero::before {
@@ -37,7 +36,7 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .hero-content {
@@ -53,7 +52,7 @@ html, body {
 }
 
 .highlight {
-  color: #d6a85f; /* 🌟 Muted Gold Highlight */
+  color: rgb(255, 180, 180); /* ✅ Light reddish white */
 }
 
 .hero-subtitle {
@@ -66,41 +65,43 @@ html, body {
 .chatbot-box {
   width: 90%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.05); /* 🔵 Subtle Glassmorphism */
-  backdrop-filter: blur(10px);
+  background: rgba(50, 0, 0, 0.2); /* ✅ Deep Red Glassmorphism */
+  backdrop-filter: blur(8px);
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px rgba(100, 0, 0, 0.15);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-top: -40px;
+  color: rgb(240, 220, 220); /* ✅ Subtle red-white */
 }
 
 .chatbot-box:hover {
   transform: scale(1.02);
-  box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 10px 20px rgba(100, 0, 0, 0.2);
 }
 
 .chatbot-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #d6a85f; /* 🌟 Gold Accent */
+  color: rgb(255, 180, 180); /* ✅ Soft reddish white */
 }
 
 /* 🚨 Emergency Alert Section */
 .alert-box {
-  background: linear-gradient(135deg, #d94b4b, #c97c4a);
+  background: #a13333; /* ✅ Deep Red */
   padding: 15px;
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
   border-radius: 8px;
-  box-shadow: 0px 0px 15px rgba(217, 75, 75, 0.4);
+  box-shadow: 0px 0px 15px rgba(100, 0, 0, 0.3);
   animation: pulse 5s infinite ease-in-out;
   width: 90%;
   max-width: 600px;
   margin-top: 20px;
+  color: rgb(250, 220, 220); /* ✅ Reddish White */
 }
 
 /* 🔥 Features Section */
@@ -121,23 +122,27 @@ html, body {
 
 /* 📦 Feature Cards */
 .feature-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(86, 82, 82, 0.2);
   backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px rgba(100, 0, 0, 0.2);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .feature-card:hover {
   transform: scale(1.04);
-  box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 10px 20px rgba(100, 0, 0, 0.3);
 }
 
 /* 📞 Emergency Contacts */
 .contact-section {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(50, 0, 0, 0.2);
   padding: 25px;
   text-align: center;
   border-radius: 10px;
@@ -149,24 +154,24 @@ html, body {
 .contact-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #c97c4a;
+  color: rgb(255, 170, 170); /* ✅ Soft Reddish White */
 }
 
 .call-911 {
   display: inline-block;
   margin-top: 10px;
-  background: linear-gradient(135deg, #d94b4b, #c97c4a);
+  background: #b93838; /* ✅ Solid Red */
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: bold;
-  color: white;
+  color: rgb(255, 235, 235); /* ✅ Light Reddish White */
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .call-911:hover {
   transform: scale(1.08);
-  box-shadow: 0px 5px 15px rgba(217, 75, 75, 0.3);
+  box-shadow: 0px 5px 15px rgba(100, 0, 0, 0.3);
 }
 
 /* 🎭 Smooth Pulse Effect for Alerts */
@@ -174,4 +179,8 @@ html, body {
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.05); opacity: 0.9; }
   100% { transform: scale(1); opacity: 1; }
+}
+
+h2.alert-title{
+  color:  rgb(255, 235, 235);
 }

@@ -43,7 +43,6 @@ const LandingPage: React.FC = () => {
 
       {/* ✅ Chatbot Section - Moved Further Down */}
       <div className="chatbot-box" style={{ marginTop: "60px", textAlign: "center" }}>
-        <h2 className="chatbot-title">💬 SafeZone AI Chatbot</h2>
         <Chatbot />
       </div>
 
