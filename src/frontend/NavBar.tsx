@@ -19,17 +19,21 @@ const Navbar = () => {
           }>
             Home
           </NavLink>
-          <NavLink to="/chatbot" className={({ isActive }) =>
+          <NavLink to="/" className={({ isActive }) =>
+            isActive ? "nav-item active" : "nav-item"
+          }>
+          </NavLink>
+          <NavLink to="./Chatbot" className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }>
             AI Chatbot
           </NavLink>
-          <NavLink to="/alerts" className={({ isActive }) =>
+          <NavLink to="/EventsPage" className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }>
             Events
           </NavLink>
-          <NavLink to="/contacts" className={({ isActive }) =>
+          <NavLink to="/Settings" className={({ isActive }) =>
             isActive ? "nav-item active" : "nav-item"
           }>
             Settings
@@ -53,25 +57,25 @@ const Navbar = () => {
             Home
           </NavLink>
           <NavLink
-            to="/chatbot"
+            to="./Chatbot"
             className="mobile-item"
             onClick={() => setIsOpen(false)}
-          >
-            AI Chatbot
+          >  
+          AI Chatbot
           </NavLink>
+          Events
           <NavLink
-            to="/alerts"
+            to="/EventsPage"
             className="mobile-item"
             onClick={() => setIsOpen(false)}
           >
-            Alerts
           </NavLink>
+            Settings
           <NavLink
-            to="/contacts"
+            to="/Settings"
             className="mobile-item"
             onClick={() => setIsOpen(false)}
           >
-            Emergency Contacts
           </NavLink>
         </div>
       )}

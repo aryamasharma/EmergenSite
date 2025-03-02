@@ -1,17 +1,13 @@
 import React from "react";
-import Navbar from "./NavBar"; 
 import AlertSystem from "./AlertSystem";
 import EvacuationMap from "./EvacuationMap";
-import './LandingPage.css';
+import NavBar from "./NavBar";
 
 const LandingPage: React.FC = () => {
   return (
+    <>
+    <NavBar />
     <div className="bg-gray-900 min-h-screen text-white">
-      
-      {/* ✅ Navbar */}
-      <Navbar />
-
-      {/* ✅ Emergency Message */}
       <div className="bg-red-600 p-4 text-center text-lg font-bold shadow-lg">
         🚨 No active emergency alerts at this time. 🚨
       </div>
@@ -36,6 +32,7 @@ const LandingPage: React.FC = () => {
       </div>
 
     </div>
+    </>
   );
 };
 
