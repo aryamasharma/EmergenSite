@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -113,6 +114,34 @@ app.post("/chat", async (req, res) => {
 // ✅ Start the Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
+=======
+import fetch from "node-fetch";
+
+app.post("/log", async (req, res) => {
+  try {
+    const { type, message } = req.body;
+
+    const response = await fetch("https://api.midnight.network/secure-store", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.MIDNIGHT_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type,
+        message,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    const result = await response.json();
+    res.json({ success: true, logId: result.transactionId });
+  } catch (error) {
+    console.error("Midnight logging error:", error);
+    res.status(500).json({ response: "Error logging data securely" });
+  }
+});
+>>>>>>> Stashed changes
 =======
 import fetch from "node-fetch";
 
