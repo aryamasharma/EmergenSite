@@ -1,0 +1,142 @@
+/* LandingPage.css */
+
+/* Ensure the body and html take full height */
+html, body {
+    margin: 10px;
+    padding: 10px;
+    height: 100%;
+  }
+  
+  /* Main container styling */
+  .bg-gray-900 {
+    background-color: #1a1a1a;
+  }
+  
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .text-white {
+    color: #ffffff;
+  }
+  
+  /* Navbar styling */
+  /* Assuming Navbar has its own styles */
+  
+  /* Emergency Message styling */
+  .bg-red-600 {
+    background-color: #dc2626;
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Main Section - Alert System & Evacuation Map styling */
+  .grid {
+    display: grid;
+  }
+  
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  .md\:grid-cols-2 {
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  .gap-4 {
+    gap: 1rem;
+  }
+  
+  .p-6 {
+    padding: 1.5rem;
+  }
+  
+  .bg-gray-800 {
+    background-color: #2d2d2d;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  /* Emergency Contacts Section styling */
+  .mx-6 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+  
+  .text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .text-red-400 {
+    color: #f87171;
+  }
+  
+  .text-gray-300 {
+    color: #d1d5db;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .bg-red-500 {
+    background-color: #ef4444;
+  }
+  
+  .px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Additional responsive adjustments */
+  @media (max-width: 768px) {
+    .grid-cols-1 {
+      grid-template-columns: 1fr;
+    }
+  
+    .mx-6 {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  
+    .p-6 {
+      padding: 1rem;
+    }
+  }
