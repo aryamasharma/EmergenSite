@@ -3,14 +3,12 @@ import { Modal, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import './events.css';
 import eventsData from './events.json';
-import resourcesData from './resources.json';
 import ParticlesComponent from './particles';
 
 const EventsPage = () => {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [isEventsView, setIsEventsView] = useState(true); // State to toggle between events and resources
     const timelineRef = useRef(null);
 
     useEffect(() => {
@@ -72,24 +70,15 @@ const EventsPage = () => {
         window.scrollTo(0, scrollPosition);
     };
 
-    const toggleView = () => {
-        setIsEventsView(!isEventsView);
-    };
-
-    const data = isEventsView ? eventsData : resourcesData;
-
     // Sort data in descending order based on id
-    const sortedData = [...data].sort((a, b) => b.id - a.id);
+    const sortedData = [...eventsData].sort((a, b) => b.id - a.id);
 
     return (
         <div className="events-page-container">
-            <Button className="toggle-button" onClick={toggleView}>
-                {isEventsView ? 'Switch to Resources' : 'Switch to Events'}
-            </Button>
             <div className="header-section">
                 <div className="header-content">
-                    <h1>{isEventsView ? 'Welcome to Events' : 'Welcome to Resources'}</h1>
-                    <p>{isEventsView ? 'Discover the latest events happening at ACM.' : 'Explore valuable resources to help you grow and learn.'}</p>
+                    <h1>Welcome to Events</h1>
+                    <p>Discover the latest events happening at ACM.</p>
                 </div>
             </div>
             <div className="main-timeline" ref={timelineRef}>

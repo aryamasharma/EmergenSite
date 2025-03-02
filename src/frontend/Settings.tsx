@@ -3,9 +3,8 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import axios from "axios";
 
 import React from "react";
-import {Layout,Menu,Button, Form, Input, Select, } from "antd";
-import CalendarSettings from "./components/CalendarSettings";
-import CardSettings from "./CardSettings"
+import { Menu, Button, Form, Input, Select } from "antd";
+import Layout from 'ant-design-layout';
 import DEIRequests from "./DEIRequests";
 
 const { Header, Content, Sider} = Layout;

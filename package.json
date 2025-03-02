@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.6.1",
     "@tailwindcss/vite": "^4.0.9",
+    "ant-design-layout": "^4.9.11",
     "axios": "^1.8.1",
     "firebase": "^11.4.0",
     "react": "^19.0.0",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/antd": "^0.12.32",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
