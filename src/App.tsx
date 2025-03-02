@@ -8,7 +8,6 @@ import LandingPage from "./frontend/LandingPage";
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold text-center p-4">SafeZone AI</h1>
       <div className="flex flex-col items-center">
         <LandingPage />
       </div>
