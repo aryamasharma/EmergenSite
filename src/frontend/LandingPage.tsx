@@ -1,7 +1,8 @@
 import React from "react";
-import Navbar from "./NavBar"; // ✅ Correct import
+import Navbar from "./NavBar"; 
 import AlertSystem from "./AlertSystem";
 import EvacuationMap from "./EvacuationMap";
+import './LandingPage.css';
 
 const LandingPage: React.FC = () => {
   return (
