@@ -5,6 +5,7 @@ import "./events.css";
 import eventsData from "./events.json";
 import ParticlesComponent from "./particles";
 
+
 // Define the type for an event
 interface EventData {
     id: number;
@@ -155,37 +156,38 @@ const EventsPage: React.FC = () => {
                     </motion.div>
                 ))}
 
-                <Modal show={showModal} onHide={handleCloseModal} centered>
-                    <Modal.Header>
-                        <Modal.Title>{selectedEvent?.title}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>
-                            <strong>Date:</strong> {selectedEvent?.month} {selectedEvent?.year}
-                        </p>
-                        <p>
-                            <strong>Description:</strong> {selectedEvent?.description}
-                        </p>
-                        {selectedEvent?.link && (
-                            <p>
-                                <strong>Link:</strong>{" "}
-                                <a
-                                    href={selectedEvent.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="modal-link"
-                                >
-                                    {selectedEvent.link}
-                                </a>
-                            </p>
-                        )}
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseModal}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+<Modal show={showModal} onHide={handleCloseModal} centered className="custom-modal">
+    <Modal.Header>
+        <Modal.Title>{selectedEvent?.title}</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+        <p>
+            <strong>Date:</strong> {selectedEvent?.month} {selectedEvent?.year}
+        </p>
+        <p>
+            <strong>Description:</strong> {selectedEvent?.description}
+        </p>
+        {selectedEvent?.link && (
+            <p>
+                <strong>Link:</strong>{" "}
+                <a
+                    href={selectedEvent.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modal-link"
+                >
+                    {selectedEvent.link}
+                </a>
+            </p>
+        )}
+    </Modal.Body>
+    <Modal.Footer>
+        <Button className="close-button" onClick={handleCloseModal}>
+            Close
+        </Button>
+    </Modal.Footer>
+</Modal>
+
             </div>
         </div>
     );

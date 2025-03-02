@@ -1,26 +1,33 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom"; // ✅ Use useNavigate
 import "./Navbar.css";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate(); // ✅ Hook for navigation
 
-  // Function to scroll smoothly to AI Chatbot
+  // Function to scroll smoothly to AI Chatbot (even when not on Home)
   const scrollToChatbot = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const chatbotSection = document.getElementById("chatbot-section");
-    if (chatbotSection) {
-      chatbotSection.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false); // Close mobile menu
-    }
+    navigate("/"); // ✅ First navigate to home
+    setTimeout(() => {
+      const chatbotSection = document.getElementById("chatbot-section");
+      if (chatbotSection) {
+        chatbotSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100); // ✅ Delay scroll to ensure the page is loaded
+    setIsOpen(false);
   };
 
-  // Function to scroll back to the top (Home)
+  // Function to scroll back to the top (Home) from any page
   const scrollToTop = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setIsOpen(false); // Close mobile menu
+    navigate("/"); // ✅ First navigate to Home
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100); // ✅ Ensure page transition is smooth
+    setIsOpen(false);
   };
 
   return (
@@ -30,12 +37,12 @@ const Navbar = () => {
 
         {/* ✅ Desktop Navigation */}
         <div className="nav-links">
-          <a href="/" className="nav-item" onClick={scrollToTop}>
+          <NavLink to="/" className="nav-item" onClick={scrollToTop}>
             Home
-          </a>
-          <a href="/" className="nav-item" onClick={scrollToChatbot}>
+          </NavLink>
+          <NavLink to="/" className="nav-item" onClick={scrollToChatbot}>
             AI Chatbot
-          </a>
+          </NavLink>
           <NavLink to="/EventsPage" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
             Events
           </NavLink>
@@ -53,12 +60,12 @@ const Navbar = () => {
       {/* ✅ Mobile Navigation Menu */}
       {isOpen && (
         <div className="mobile-menu">
-          <a href="/" className="mobile-item" onClick={scrollToTop}>
+          <NavLink to="/" className="mobile-item" onClick={scrollToTop}>
             Home
-          </a>
-          <a href="/" className="mobile-item" onClick={scrollToChatbot}>
+          </NavLink>
+          <NavLink to="/" className="mobile-item" onClick={scrollToChatbot}>
             AI Chatbot
-          </a>
+          </NavLink>
           <NavLink to="/alerts" className="mobile-item" onClick={() => setIsOpen(false)}>
             Alerts
           </NavLink>

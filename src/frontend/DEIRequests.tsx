@@ -1,76 +1,53 @@
-import React, { useState } from 'react';
-import { Table, Button, message } from 'antd';
+import React, { useState } from "react";
+import "./DEI.css"; // ✅ Import new CSS
 
-const DEIRequests = () => {
-  const [selectedRequest, setSelectedRequest] = useState(null);
+// ✅ Define Type for Requests
+interface RequestData {
+  id: string;
+  request: string;
+}
 
-  const data = [
-    {
-      key: '1',
-      request: 'Screen Reader Compatibility',
-    },
-    {
-      key: '2',
-      request: 'Keyboard Navigation Support',
-    },
-    {
-      key: '3',
-      request: 'Text Size Adjustment',
-    },
-    {
-      key: '4',
-      request: 'High Contrast Mode',
-    },
-    {
-      key: '5',
-      request: 'Captions for Videos',
-    },
+const DEIRequests: React.FC = () => {
+  const [selectedRequest, setSelectedRequest] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const data: RequestData[] = [
+    { id: "1", request: "Screen Reader Compatibility" },
+    { id: "2", request: "Keyboard Navigation Support" },
+    { id: "3", request: "Text Size Adjustment" },
+    { id: "4", request: "High Contrast Mode" },
+    { id: "5", request: "Captions for Videos" },
   ];
 
-  const handleSubmit = () => {
-    if (selectedRequest) {
-      message.success(`You have submitted: ${selectedRequest}. We will get back to you soon.`);
-    }
+  // ✅ Handle Submission
+  const handleSubmit = (request: string) => {
+    setSelectedRequest(request);
+    setMessage(`✅ Your request "${request}" has been submitted.`);
+    setTimeout(() => setMessage(null), 3000);
   };
 
-  const columns = [
-    {
-      title: 'Accommodation Request',
-      dataIndex: 'request',
-      key: 'request',
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <Button
-          type="primary"
-          onClick={() => {
-            setSelectedRequest(record.request);
-            handleSubmit();
-          }}
-          style={{
-            backgroundColor: '#9E7B5E', // Darker shade of AB886D
-            borderColor: '#9E7B5E',
-          }}
-        >
-          Submit
-        </Button>
-      ),
-    },
-  ];
-
   return (
-    <div>
-      <h2 style={{ textAlign: 'center' }}>Website DEI Accommodation Requests</h2>
-      <Table
-        columns={columns}
-        dataSource={data}
-        pagination={false}
-        rowKey="key"
-        style={{ margin: '0 auto', maxWidth: 600, backgroundColor: '#AB886D' }}
-        rowClassName="table-row"
-      />
+    <div className="dei-container">
+      <h2 className="dei-title">🌐 Website DEI Accommodation Requests</h2>
+
+      {/* ✅ Success Message */}
+      {message && <div className="dei-message">{message}</div>}
+
+      {/* ✅ Table */}
+      <div className="dei-table">
+        <div className="dei-table-header">
+          <span>Accommodation Request</span>
+          <span>Action</span>
+        </div>
+        {data.map((item) => (
+          <div key={item.id} className="dei-table-row">
+            <span>{item.request}</span>
+            <button className="dei-submit-button" onClick={() => handleSubmit(item.request)}>
+              Submit
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

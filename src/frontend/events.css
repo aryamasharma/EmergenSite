@@ -270,85 +270,7 @@ button.toggle-button:hover {
     position: relative;
 }
 
-.modal-dialog-centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
 
-.modal-content {
-    margin: auto;
-    background-color: #141212;
-    border: 1px solid red;
-    border-radius: 10px;
-    color: #c1b9b1;
-    padding: 20px;
-    font-family: 'Lato', sans-serif; 
-}
-
-.modal-header {
-    display: flex;
-    justify-content: center;
-    border-bottom: none;
-}
-
-.modal-title {
-    margin: 0 auto;
-    font-size: 24px;
-    color: #f5cba7; 
-    text-align: center;
-    font-family: 'Playfair Display', serif; 
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: center;
-}
-
-.modal-footer .btn {
-    background-color: #fff;
-    border: 2px solid red;
-    color: red;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    font-family: 'Lato', sans-serif; 
-}
-
-.modal-footer .btn:hover {
-    background-color: red;
-    color: #fff;
-    transform: scale(1.05);
-}
-
-.modal-footer .btn:active {
-    background-color: red;
-    color: #fff;
-    transform: scale(0.95);
-}
-
-.modal-body p {
-    color: #f5cba7; 
-    transition: color 0.3s ease, transform 0.3s ease;
-    font-family: 'Lato', sans-serif;
-}
-
-.modal-body p:hover {
-    color: red;
-}
-
-.modal-body strong {
-    color: #f5cba7; 
-    transition: color 0.3s ease, transform 0.3s ease;
-    font-family: 'Lato', sans-serif; 
-}
-
-.modal-body strong:hover {
-    color: red;
-}
 
 #particles canvas {
     z-index: -1;
@@ -357,13 +279,73 @@ button.toggle-button:hover {
     position: absolute;
 }
 
-/* Add styles for the link in the modal */
+/* 🌍 Modal Container */
+.custom-modal .modal-content {
+  background: rgba(21, 19, 19, 0.8); /* ✅ Deep Red Glassmorphism */
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  border: none;
+  text-align: center;
+  color: rgb(240, 215, 215); /* ✅ Soft Reddish-White */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* ✅ Modal Header */
+.custom-modal .modal-header {
+  border-bottom: none;
+  color: rgb(255, 180, 180); /* ✅ Light Reddish-White */
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* ✅ Modal Title */
+.custom-modal .modal-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: rgb(255, 190, 190); /* ✅ Light Reddish Accent */
+}
+
+/* ✅ Modal Body */
+.custom-modal .modal-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgb(240, 215, 215);
+}
+
+/* 📎 Link Styling */
 .modal-link {
-  color: #f5cba7;
+  color: rgb(255, 120, 120); /* ✅ Muted Light Red */
   text-decoration: none;
   font-weight: bold;
 }
 
 .modal-link:hover {
-  text-decoration: none;
+  text-decoration: underline;
+  color: rgb(255, 150, 150); /* ✅ Slightly Brighter Red */
+}
+
+/* ❌ Close Button */
+.custom-modal .modal-footer {
+  border-top: none;
+  display: flex;
+  justify-content: center;
+}
+
+.close-button {
+  background: #d3cecd; /* ✅ Dark Red */
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s ease, transform 0.2s ease;
+  border: none;
+}
+
+.close-button:hover {
+  background: #b93838; /* ✅ Brighter Red */
+  transform: scale(1.05);
 }
