@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -14,27 +14,42 @@ const customIcon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
-const MapComponent: React.FC = () => {
-  const [position, setPosition] = useState<[number, number] | null>(null);
-  const defaultPosition: [number, number] = [40.7128, -74.006]; // New York
+// Define Props
+interface MapComponentProps {
+  userLocation: { lat: number; lon: number } | null;
+  shelterLocation: { lat: number; lon: number; name: string } | null;
+}
+
+const MapComponent: React.FC<MapComponentProps> = ({ userLocation, shelterLocation }) => {
+  const defaultPosition: [number, number] = [39.6741, -75.7513]; // Default: New York
+  const [position, setPosition] = useState<[number, number]>(defaultPosition);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => setPosition([pos.coords.latitude, pos.coords.longitude]),
-      () => setPosition(defaultPosition) // Use default if denied
-    );
-  }, []);
+    if (userLocation) {
+      setPosition([userLocation.lat, userLocation.lon]);
+    }
+  }, [userLocation]);
 
   return (
     <MapContainer
-      center={position ?? defaultPosition} // ✅ Ensures `center` is never undefined
+      center={position}
       zoom={13}
       style={{ height: "400px", width: "100%" }}
     >
+      {/* ✅ OpenStreetMap Tiles (No API Key Needed) */}
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker position={position ?? defaultPosition} icon={customIcon}>
-        <Popup>{position ? "Your Location" : "Default Location (New York)"}</Popup>
+
+      {/* 📍 User Location Marker */}
+      <Marker position={position} icon={customIcon}>
+        <Popup>Your Location</Popup>
       </Marker>
+
+      {/* 🏠 Shelter Location Marker (if available) */}
+      {shelterLocation && (
+        <Marker position={[shelterLocation.lat, shelterLocation.lon]} icon={customIcon}>
+          <Popup>Nearest Safe Shelter: {shelterLocation.name}</Popup>
+        </Marker>
+      )}
     </MapContainer>
   );
 };
