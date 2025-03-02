@@ -20,11 +20,11 @@ const Navbar = () => {
           <NavLink to="/chatbot" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
             AI Chatbot
           </NavLink>
-          <NavLink to="/alerts" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-            Alerts
+          <NavLink to="/EventsPage" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+            Events
           </NavLink>
-          <NavLink to="/contacts" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-            Emergency Contacts
+          <NavLink to="/Settings" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+            Settings
           </NavLink>
         </div>
 

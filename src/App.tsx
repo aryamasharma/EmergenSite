@@ -20,9 +20,9 @@ function App() {
       <div className="app-container">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/chatbot" element={<Chatbot />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="./Chatbot" element={<Chatbot />} />
+          <Route path="/EventsPage" element={<EventsPage />} />
+          <Route path="/Settings" element={<Settings />} />
         </Routes>
       </div>
     </div>
