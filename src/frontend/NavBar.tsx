@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom"; // ✅ Use useNavigate
 import "./Navbar.css";
 import { Menu, X } from "lucide-react";
+import React from "react";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate(); // ✅ Hook for navigation
 
   // Function to scroll smoothly to AI Chatbot (even when not on Home)
