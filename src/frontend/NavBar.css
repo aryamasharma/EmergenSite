@@ -1,10 +1,11 @@
-/* Navbar Styles */
+/* 🌍 Global Navbar Styles */
 .navbar {
-    background-color: #111;
+    background: rgba(17, 17, 17, 0.9);
+    backdrop-filter: blur(8px);
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
-    align-items: left;
+    align-items: center; /* ✅ Center aligns everything */
     position: fixed;
     width: 100%;
     top: 0;
@@ -12,9 +13,10 @@
     z-index: 1000;
     height: 70px;
     box-sizing: border-box;
+    transition: background 0.3s ease-in-out;
 }
 
-/* Container inside navbar for content positioning */
+/* 🏗 Container inside Navbar */
 .container {
     display: flex;
     width: 100%;
@@ -24,29 +26,34 @@
     align-items: center;
 }
 
-/* Logo */
+/* 🔥 Logo */
 .logo {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     color: white;
-    margin-right: 20px;
+    text-shadow: 0px 0px 10px rgba(255, 102, 102, 0.8);
+    transition: transform 0.3s ease;
 }
 
-/* Navigation Links - positioned in center, extending to right */
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* 🛠 Navigation Links */
 .nav-links {
     display: flex;
     gap: 30px;
     align-items: center;
-    margin-left: auto;
 }
 
+/* 🔗 Navigation Items */
 .nav-item {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 18px;
+    position: relative;
     transition: color 0.3s ease-in-out;
-    font-size: 20px;
-    align-items: left;
 }
 
 .nav-item.active {
@@ -57,32 +64,52 @@
     color: #ff6666;
 }
 
-/* Mobile Menu Icon */
-.mobile-menu-icon {
+/* ✨ Animated Underline Effect */
+.nav-item::after {
+    content: "";
     display: block;
-    cursor: pointer;
-    margin-left: 25px;
+    height: 3px;
+    width: 0%;
+    background: #ff6666;
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
 }
 
-/* Mobile Menu */
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* 📱 Mobile Menu Icon */
+.mobile-menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+/* 📱 Mobile Menu */
 .mobile-menu {
     display: none;
     flex-direction: column;
-    background: #222;
-    padding: 5px;
+    background: rgba(34, 34, 34, 0.95);
+    padding: 10px;
     position: absolute;
     width: 100%;
-    top: 50px;
+    top: 70px;
     left: 0;
     z-index: 999;
+    box-shadow: 0px 5px 15px rgba(255, 102, 102, 0.2);
+    animation: slideDown 0.3s ease-in-out;
 }
 
+/* 🔗 Mobile Navigation Items */
 .mobile-item {
-    padding: 12px;
+    padding: 15px;
     color: white;
     text-decoration: none;
     text-align: center;
     border-bottom: 1px solid #333;
+    transition: background 0.3s ease-in-out;
 }
 
 .mobile-item:last-child {
@@ -90,10 +117,10 @@
 }
 
 .mobile-item:hover {
-    background-color: #333;
+    background-color: #444;
 }
 
-/* Mobile Styles */
+/* 📱 Mobile Styles */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -105,5 +132,17 @@
 
     .mobile-menu {
         display: flex;
+    }
+}
+
+/* 🎭 Mobile Menu Slide Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
