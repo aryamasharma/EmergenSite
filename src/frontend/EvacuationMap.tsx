@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./EvacuationMap.css"; // ✅ Import CSS
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -8,7 +9,6 @@ const EvacuationMap: React.FC = () => {
   const [shelter, setShelter] = useState<{ lat: number; lon: number; name: string } | null>(null);
   const [error, setError] = useState<string>("");
 
-  // ✅ Load Google Maps Script if Not Already Loaded
   useEffect(() => {
     if (!document.querySelector("#google-maps-script")) {
       const script = document.createElement("script");
@@ -28,7 +28,6 @@ const EvacuationMap: React.FC = () => {
           setGeoLocation(loc);
 
           try {
-            // ✅ Request evacuation route from backend
             const res = await axios.post("http://localhost:5000/evacuation-route", { location: loc });
 
             if (res.data.shelter) {
@@ -54,38 +53,38 @@ const EvacuationMap: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-gray-900 p-6 rounded-lg shadow-lg text-white">
-      <h2 className="text-lg font-bold text-blue-400">🗺️ Evacuation Map</h2>
+    <div className="evacuation-map">
+      <h2 className="evacuation-title">🗺️ Evacuation Map</h2>
 
-      {error && <p className="text-red-400 mt-2">{error}</p>}
+      {error && <p className="evacuation-error">{error}</p>}
 
       {geoLocation ? (
         <>
-          <p className="mt-2">📍 Your Current Location: <strong>({geoLocation.lat}, {geoLocation.lon})</strong></p>
+          <p className="evacuation-info">
+            📍 Your Current Location: <strong>({geoLocation.lat}, {geoLocation.lon})</strong>
+          </p>
 
           {shelter ? (
             <>
-              <p className="mt-2">🚶 Nearest Safe Shelter: <strong>{shelter.name}</strong></p>
+              <p className="evacuation-info">
+                🚶 Nearest Safe Shelter: <strong>{shelter.name}</strong>
+              </p>
               <iframe
-                width="100%"
-                height="250"
                 src={`https://www.google.com/maps/embed/v1/directions?key=${GOOGLE_MAPS_API_KEY}&origin=${geoLocation.lat},${geoLocation.lon}&destination=${shelter.lat},${shelter.lon}&mode=walking`}
                 allowFullScreen
-                className="mt-2 rounded-lg shadow-lg"
+                className="evacuation-map-iframe"
               ></iframe>
             </>
           ) : (
             <iframe
-              width="100%"
-              height="250"
               src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=${geoLocation.lat},${geoLocation.lon}`}
               allowFullScreen
-              className="mt-2 rounded-lg shadow-lg"
+              className="evacuation-map-iframe"
             ></iframe>
           )}
         </>
       ) : (
-        <p className="mt-2">📍 Detecting your location...</p>
+        <p className="evacuation-info">📍 Detecting your location...</p>
       )}
     </div>
   );
