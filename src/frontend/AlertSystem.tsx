@@ -101,9 +101,13 @@ const AlertSystem: React.FC = () => {
       <button className="alert-button" onClick={sendAlert} disabled={submitDisabled}>
         {submitDisabled ? `Wait ${Math.floor(timeLeft! / 60)}m ${timeLeft! % 60}s` : "Send Alert"}
       </button>
-
-      {showPopup && <p className="alert-success">✅ Alert has been sent!</p>}
-
+  
+      {showPopup && (
+        <p className="alert-success">
+          ✅ Alert has been sent! (Log ID: {logId}, Status: {status})
+        </p>
+      )}
+  
       {showHelpline && (
         <div className="helpline-popup">
           🚨 **Need Help? Call:** <a href={`tel:${helplineNumber}`}>{helplineNumber}</a>
@@ -112,6 +116,7 @@ const AlertSystem: React.FC = () => {
       )}
     </div>
   );
+  
 };
 
 export default AlertSystem;

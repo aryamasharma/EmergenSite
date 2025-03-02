@@ -8,7 +8,6 @@ interface RequestData {
 }
 
 const DEIRequests: React.FC = () => {
-  const [selectedRequest, setSelectedRequest] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   const data: RequestData[] = [
@@ -21,7 +20,6 @@ const DEIRequests: React.FC = () => {
 
   // ✅ Handle Submission
   const handleSubmit = (request: string) => {
-    setSelectedRequest(request);
     setMessage(`✅ Your request "${request}" has been submitted.`);
     setTimeout(() => setMessage(null), 3000);
   };
