@@ -1,9 +1,12 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  background: #1a1111; /* ✅ Dark muted red */
-  color: rgb(235, 215, 215); /* ✅ Soft red-white */
+  background: #1a1111;
+  /* ✅ Dark muted red */
+  color: rgb(235, 215, 215);
+  /* ✅ Soft red-white */
   scroll-behavior: smooth;
 }
 
@@ -24,9 +27,10 @@ html, body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("https://source.unsplash.com/1600x900/?dark,technology,abstract") center/cover;
+  background: url("https://source.unsplash.com/1600x900/?technology") center/cover no-repeat;
   position: relative;
-  color: rgb(245, 225, 225); /* ✅ Softer red-white */
+  color: rgb(245, 225, 225);
+  /* ✅ Softer red-white */
 }
 
 .hero::before {
@@ -52,7 +56,8 @@ html, body {
 }
 
 .highlight {
-  color: rgb(255, 180, 180); /* ✅ Light reddish white */
+  color: rgb(255, 180, 180);
+  /* ✅ Light reddish white */
 }
 
 .hero-subtitle {
@@ -65,7 +70,7 @@ html, body {
 .chatbot-box {
   width: 90%;
   max-width: 500px;
-  background: rgba(50, 0, 0, 0.2); /* ✅ Deep Red Glassmorphism */
+  background: rgba(50, 0, 0, 0.2);
   backdrop-filter: blur(8px);
   padding: 20px;
   border-radius: 12px;
@@ -73,7 +78,7 @@ html, body {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-top: -40px;
-  color: rgb(240, 220, 220); /* ✅ Subtle red-white */
+  color: rgb(240, 220, 220);
 }
 
 .chatbot-box:hover {
@@ -85,12 +90,11 @@ html, body {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: rgb(255, 180, 180); /* ✅ Soft reddish white */
 }
 
 /* 🚨 Emergency Alert Section */
 .alert-box {
-  background: #a13333; /* ✅ Deep Red */
+  background: #a13333;
   padding: 15px;
   text-align: center;
   font-size: 1.2rem;
@@ -101,7 +105,7 @@ html, body {
   width: 90%;
   max-width: 600px;
   margin-top: 20px;
-  color: rgb(250, 220, 220); /* ✅ Reddish White */
+  color: rgb(250, 220, 220);
 }
 
 /* 🔥 Features Section */
@@ -116,7 +120,7 @@ html, body {
 
 @media (min-width: 768px) {
   .features-grid {
-      grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -152,33 +156,42 @@ html, body {
 .contact-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: rgb(255, 170, 170); /* ✅ Soft Reddish White */
+  color: rgb(255, 170, 170);
 }
 
 .call-911 {
-  display: inline-block;
-  margin-top: 10px;
-  background: #b93838; /* ✅ Solid Red */
+  background: #d94b4b;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: bold;
-  color: rgb(255, 235, 235); /* ✅ Light Reddish White */
+  color: rgb(255, 235, 235);
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  display: block;
+  width: fit-content;
+  margin: 10px auto;
 }
 
 .call-911:hover {
+  background: white;
+  color: #d94b4b;
   transform: scale(1.08);
-  box-shadow: 0px 5px 15px rgba(100, 0, 0, 0.3);
 }
 
 /* 🎭 Smooth Pulse Effect for Alerts */
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 1; }
-}
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
 
-h2.alert-title{
-  color:  rgb(255, 235, 235);
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

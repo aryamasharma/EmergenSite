@@ -42,17 +42,17 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ✅ Chatbot Section - Moved Further Down */}
-      <div className="chatbot-box" style={{ marginTop: "60px", textAlign: "center" }}>
+      <div id="chatbot-section" className="chatbot-box" style={{ marginTop: "60px", textAlign: "center" }}>
         <Chatbot />
       </div>
 
       {/* ✅ Emergency Contacts */}
       <div className="contact-section">
         <h2 className="contact-title">📞 Emergency Contacts</h2>
-        <p>For immediate assistance, contact:</p>
         <a href="tel:911" className="call-911">Call 911</a>
       </div>
     </div>
+
   );
 };
 
