@@ -1,28 +1,31 @@
 /* 🌍 Global Styles for the Alert System */
 .alert-container {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
+    background: rgba(44, 42, 42, 0.2); /* ✅ Dark muted red */
+    padding: 30px; /* ✅ Increased padding to make box taller */
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.08);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
     width: 90%;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ✅ Title Styling */
 .alert-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color:  #982a0b;
-    margin-bottom: 12px;
+    color: rgb(255, 180, 180); /* ✅ Soft reddish-white */
+    margin-bottom: 15px;
 }
 
 /* 🔥 Styled Input Field */
 .alert-input {
     width: 95%;
-    padding: 12px; /* ✅ Slightly bigger padding */
+    padding: 14px; /* ✅ More padding */
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.1);
@@ -30,33 +33,32 @@
     font-size: 1rem;
     transition: border 0.3s ease, box-shadow 0.3s ease;
     outline: none;
-    margin-bottom: 20px; /* ✅ Added spacing between input and button */
+    margin-bottom: 20px; /* ✅ Increased spacing */
 }
 
 .alert-input:focus {
-    background: #ad9d99; /* ✅ Gold Color to Match Website */
-    box-shadow: 0px 0px 10px rgba(255, 183, 77, 0.5);
+    border-color: #d74b4b;
+    box-shadow: 0px 0px 10px rgba(215, 75, 75, 0.5);
 }
 
-/* 🚨 Send Alert Button - **New Color + More Padding** */
+/* 🚨 Send Alert Button */
 .alert-button {
-    margin-top: 8px;
-    background: #982a0b; /* ✅ Gold Color to Match Website */
-    padding: 14px; /* ✅ Increased padding for better UX */
+    background: #982a0b; /* ✅ Muted Red */
+    padding: 14px;
     border-radius: 8px;
     font-size: 1rem;
     font-weight: bold;
-    color: #d2caca; /* ✅ Dark Text for contrast */
+    color: rgb(240, 220, 220);
     cursor: pointer;
     width: 100%;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
     border: none;
+    margin-bottom: 20px; /* ✅ More space between button & pop-up */
 }
 
 .alert-button:hover {
-    background: #d03939; /* ✅ Slightly Darker Gold on Hover */
+    background: #b93838;
     transform: scale(1.02);
-    box-shadow: 0px 5px 10px rgba(224, 162, 64, 0.4);
 }
 
 .alert-button:disabled {
@@ -68,10 +70,10 @@
 /* ✅ Success Message */
 .alert-success {
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
-    background: #2ecc71;
-    color: white;
+    background: rgba(46, 204, 113, 0.2);
+    color: rgb(240, 220, 220);
     font-weight: bold;
     text-align: center;
 }
@@ -79,10 +81,49 @@
 /* ❌ Error Message */
 .alert-error {
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
-    background: #e74c3c;
-    color: white;
+    background: rgba(231, 76, 60, 0.2);
+    color: rgb(255, 120, 120);
     font-weight: bold;
     text-align: center;
+}
+
+/* 📞 Helpline Pop-up */
+.helpline-popup {
+    margin-top: 30px; /* ✅ Lowered pop-up position */
+    padding: 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(255, 200, 200);
+    font-weight: bold;
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+}
+
+.helpline-popup a {
+    color: rgb(100, 200, 255);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.helpline-popup a:hover {
+    text-decoration: underline;
+}
+
+/* ❌ Close Button */
+.helpline-close {
+    background: #000;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+.helpline-close:hover {
+    background: rgb(50, 50, 50);
 }
