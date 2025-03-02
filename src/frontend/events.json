@@ -1,57 +1,57 @@
 [
   {
     "id": 1,
+    "title": "Major Flooding in Coastal Bangladesh",
     "month": "Mar",
     "year": "2025",
-    "title": "Major Flooding in Coastal Bangladesh",
     "description": "Severe and prolonged rainfall led to extensive flooding in the coastal regions of Bangladesh in early March 2025. Rising sea levels and inadequate drainage systems exacerbated the situation, resulting in widespread displacement and damage to infrastructure.",
     "link": "https://www.example-news.com/bangladesh-floods-march-2025"
   },
   {
     "id": 2,
+    "title": "Magnitude 7.2 Earthquake Hits Pacific Coast of Chile",
     "month": "Feb",
     "year": "2025",
-    "title": "Magnitude 7.2 Earthquake Hits Pacific Coast of Chile",
     "description": "A powerful 7.2 magnitude earthquake struck off the coast of Chile in February 2025, triggering tsunami warnings across the Pacific. While the earthquake caused significant tremors, the tsunami impact was relatively limited due to effective early warning systems.",
     "link": "https://www.example-earthquakes.com/chile-earthquake-feb-2025"
   },
   {
     "id": 3,
+    "title": "Extreme Blizzard Conditions in the Midwestern United States",
     "month": "Jan",
     "year": "2025",
-    "title": "Extreme Blizzard Conditions in the Midwestern United States",
     "description": "Record-breaking snowfall and frigid temperatures gripped the Midwestern United States in January 2025. The severe blizzard conditions led to widespread power outages, transportation disruptions, and significant economic losses.",
     "link": "https://www.example-weather.com/midwest-blizzard-jan-2025"
   },
     {
     "id": 4,
+    "title": "Typhoon Haiyan Re-emergence in the Philippines",
     "month": "Dec",
     "year": "2024",
-    "title": "Typhoon Haiyan Re-emergence in the Philippines",
     "description": "A storm very similar to typhoon Haiyan, caused significant damage in the philippines in late 2024. This storm caused wide spread damage, and loss of life.",
     "link": "https://www.example-weather.com/philippines-typhoon-dec-2024"
     },
     {
     "id": 5,
+    "title": "Wildfires in Australia",
     "month": "Nov",
     "year": "2024",
-    "title": "Wildfires in Australia",
     "description": "A record breaking heatwave caused wide spread wildfires across Australia, causing wide spread damage, and loss of life.",
     "link": "https://www.example-weather.com/australia-wildfires-nov-2024"
     },
     {
     "id": 6,
+    "title": "Earthquake in Japan",
     "month": "Oct",
     "year": "2024",
-    "title": "Earthquake in Japan",
     "description": "A powerful earthquake struck the southern island of Japan, causing wide spread damage, and loss of life.",
     "link": "https://www.example-earthquakes.com/japan-earthquake-oct-2024"
     },
     {
     "id": 7,
+    "title": "Hurricane in the Gulf of Mexico",
     "month": "Sep",
     "year": "2024",
-    "title": "Hurricane in the Gulf of Mexico",
     "description": "A category 5 hurricane caused wide spread damage to the gulf coast of the United States. Causing loss of life, and wide spread damage.",
     "link": "https://www.example-weather.com/gulf-hurricane-sep-2024"
     }

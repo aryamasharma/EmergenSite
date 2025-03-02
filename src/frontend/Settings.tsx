@@ -16,25 +16,6 @@ interface MenuItem {
   children?: { key: string; label: string }[];
 }
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-  const key = String(index + 1);
-  const labels = ["Information Settings", "Accommodations"];
-  const children = [
-    [
-      { key: '1', label: 'Personal Information' }
-    ], // Children for Information Settings
-    [
-      { key: '3', label: 'Requests' },
-    ]
-  ];
-
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: labels[index],
-    children: children[index],
-  };
-});
 
 const Settings: React.FC = () => {
   const [selectedKey, setSelectedKey] = useState<string>('11');
@@ -122,20 +103,6 @@ const Settings: React.FC = () => {
     }
   };
 
-  const [eventData, setEventData] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchEventData = async () => {
-      try {
-        const response = await axios.get('/api/get-event-data');
-        setEventData(response.data);
-      } catch (error) {
-        console.error('Error fetching event data:', error);
-      }
-    };
-
-    fetchEventData();
-  }, []);
 
   return (
     <Container fluid>
